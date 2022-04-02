@@ -1,0 +1,20 @@
+.filterOption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 18px;
+}
+
+.filterOption input {
+  width: 18px;
+  height: 18px;
+  margin: 0 19px;
+}
+
+.filterOption:last-child {
+  margin-bottom: 0;
+}
+/*# sourceMappingURL=FilterOptions.css.map */

@@ -1,0 +1,18 @@
+@import "../../Helper/typography.scss";
+@import "../../Helper/variable.scss";
+.categories {
+    .categories__navbar {
+        .navbar-toggler-icon {
+            background: none;
+            width: auto;
+            color: $primaryColor;
+        }
+        .navbar-toggler-icon::after {
+            content: "See All Category >";
+        }
+        .categories__wrapper {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+}

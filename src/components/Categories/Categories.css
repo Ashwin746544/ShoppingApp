@@ -1,0 +1,41 @@
+.text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0.0075em;
+  color: #5A5B6A !important;
+}
+
+.circularDiv {
+  background-color: #EDEDF0;
+  border-radius: 99px;
+}
+
+.general-btn {
+  padding: 8px 12px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.categories .categories__navbar .navbar-toggler-icon {
+  background: none;
+  width: auto;
+  color: #2264D1;
+}
+
+.categories .categories__navbar .navbar-toggler-icon::after {
+  content: "See All Category >";
+}
+
+.categories .categories__navbar .categories__wrapper {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+/*# sourceMappingURL=Categories.css.map */
