@@ -1,0 +1,27 @@
+.common-text-style, .filter__container .filter .filter__title, .filter__container .filter .filter__body {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.022em;
+  color: #19191D !important;
+}
+
+.filter__container {
+  max-width: 304px;
+}
+
+.filter__container .filter .filter__title {
+  font-weight: 500;
+}
+
+.filter__container .filter .filter__title .accordion-button {
+  padding: 8px 12px;
+  color: #19191D !important;
+}
+
+.filter__container .filter .filter__body {
+  font-weight: 400;
+  padding: 0;
+  padding-top: 14px;
+  padding-bottom: 16px;
+}
+/*# sourceMappingURL=Filter.css.map */
