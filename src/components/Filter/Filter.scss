@@ -11,12 +11,16 @@
         .filter__title {
             @extend .common-text-style;
             font-weight: 500;
+            background: #F7F7FA !important;
+            border-radius: 4px;
             .accordion-button {
                 padding: 8px 12px;
                 color: #19191D !important;
             }
         }
         .filter__body {
+          background: #F7F7FA !important;
+          border-radius: 4px;
             @extend .common-text-style;
             font-weight: 400;
             padding: 0;
@@ -24,4 +28,8 @@
             padding-bottom: 16px;
         }
     }
+}
+
+.filter__container:not(:last-child){
+  margin-bottom: 24px;
 }

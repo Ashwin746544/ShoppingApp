@@ -1,1 +1,6 @@
-/* No CSS *//*# sourceMappingURL=Sidebar.css.map */
+.sidebar {
+  width: 355px;
+  border: 1px solid gray;
+  padding-bottom: 100px;
+}
+/*# sourceMappingURL=Sidebar.css.map */

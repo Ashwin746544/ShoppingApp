@@ -6,6 +6,7 @@
             background: none;
             width: auto;
             color: $primaryColor;
+            display: flex;
         }
         .navbar-toggler-icon::after {
             content: "See All Category >";

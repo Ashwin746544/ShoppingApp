@@ -1,38 +1,16 @@
-function CustomToggle({ children, eventKey }) {
-  const decoratedOnClick = useAccordionButton(eventKey, () =>
-    console.log("totally custom!")
-  );
+import Detail from "../Detail/Detail";
+import DetailCategoryName from "../DetailCategoryName/DetailCategoryName";
 
+const SidebarCategory = ({ sidebarCategory }) => {
+
+
+  const content = sidebarCategory.options.map((option, index) => <Detail key={index} title={option.optionTitle}>
+    {option.optionCategories.map((optionCategory, index) => <DetailCategoryName key={index}>{optionCategory}</DetailCategoryName>)}
+  </Detail>);
   return (
-    <button
-      type="button"
-      style={{ backgroundColor: "pink" }}
-      onClick={decoratedOnClick}
-    >
-      {children}
-    </button>
-  );
-}
-const SidebarCategory = (catogoryData) => {
-  return (
-    <Accordion defaultActiveKey="0">
-      <Card>
-        <Card.Header>
-          <CustomToggle eventKey="0">Category Title 1</CustomToggle>
-        </Card.Header>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body>Hello! I'm the body</Card.Body>
-        </Accordion.Collapse>
-      </Card>
-      <Card>
-        <Card.Header>
-          <CustomToggle eventKey="1">Category Title 2</CustomToggle>
-        </Card.Header>
-        <Accordion.Collapse eventKey="1">
-          <Card.Body>Hello! I'm another body</Card.Body>
-        </Accordion.Collapse>
-      </Card>
-    </Accordion>
+    <Detail title={sidebarCategory.title}>
+      {content}
+    </Detail>
   );
 };
 export default SidebarCategory;

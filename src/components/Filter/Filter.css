@@ -11,6 +11,8 @@
 
 .filter__container .filter .filter__title {
   font-weight: 500;
+  background: #F7F7FA !important;
+  border-radius: 4px;
 }
 
 .filter__container .filter .filter__title .accordion-button {
@@ -19,9 +21,15 @@
 }
 
 .filter__container .filter .filter__body {
+  background: #F7F7FA !important;
+  border-radius: 4px;
   font-weight: 400;
   padding: 0;
   padding-top: 14px;
   padding-bottom: 16px;
+}
+
+.filter__container:not(:last-child) {
+  margin-bottom: 24px;
 }
 /*# sourceMappingURL=Filter.css.map */

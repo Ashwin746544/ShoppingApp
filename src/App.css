@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif !important;
     /* width: 1920px; */
+}
+.side__main-container{
+  max-width: 1469px;
+  margin: auto;
+  border: 1px solid lightgray;
 }

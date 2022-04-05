@@ -11,19 +11,30 @@ import {
   Badge,
 } from "react-bootstrap";
 import Logo from "../../assets/logo.svg";
+import HeaderRight from "../HeaderRight/HeaderRight";
+import HeaderMiddle from "../HeaderMiddle/HeaderMiddle";
 
 const Header = () => {
   return (
     <header className="header container-fluid px-0 py-3">
-      <Navbar bg="light" expand="lg" className="py-0">
+      <Navbar expand="xl" className="py-0">
         <Container fluid className="px-0">
-          <Navbar.Brand href="#" className="header__logo py-0 px-3">
-            <img src={Logo} alt="logo" />
+          <Navbar.Brand href="#" className="header__logo py-0 px-3 d-flex align-items-center">
+            <div className="logo-container d-flex align-items-center justify-content-center">
+              <span>S</span>
+            </div>
+            <p className="logo-name mb-0">Shopka</p>
           </Navbar.Brand>
+          <div className="header__middle-container ms-auto d-none d-lg-block d-xl-none">
+            <HeaderMiddle />
+          </div>
+          <div className="ms-auto d-none d-sm-block d-xl-none" >
+            <HeaderRight />
+          </div>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse
             id="navbarScroll"
-            className="d-lg-flex justify-content-between"
+            className="d-xl-flex justify-content-between ms-5 ms-xl-0 collapse_content"
           >
             <Nav
               className="my-2 my-lg-0 header__links"
@@ -43,29 +54,11 @@ const Header = () => {
                 Register
               </Nav.Link>
             </Nav>
-            <div className="header__middle">
-              <div className="header__middle-search circularDiv p-2">
-                <img src={SearchIcon} />
-                <input type="search" placeholder="search..." className="ms-1" />
-              </div>
-              <p className="text px-3 py-1 mb-0">Consumer Electronics</p>
+            <div className="header__middle-container me-2 me-sm-0 d-block d-lg-none d-xl-block">
+              <HeaderMiddle />
             </div>
-            <div className="d-flex header__Right">
-              <Button
-                variant="outline-success"
-                className="text general-btn header__Right-signIn actions"
-              >
-                SignIn
-              </Button>
-              <button className="general-btn text actions header__Right-cart">
-                My Cart{" "}
-                <Badge className="badge" bg="danger">
-                  5
-                </Badge>
-              </button>
-              <button className="header__Right-profile">
-                <img src={UserIcon} />
-              </button>
+            <div className="my-3 my-sm-0 d-block d-sm-none d-xl-block" >
+              <HeaderRight />
             </div>
           </Navbar.Collapse>
         </Container>

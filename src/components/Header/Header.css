@@ -25,6 +25,25 @@
   margin-right: 6px;
 }
 
+.header .header__logo .logo-container {
+  background: -webkit-gradient(linear, left top, right top, from(#2979FF), to(#4C589E));
+  background: linear-gradient(90deg, #2979FF 0%, #4C589E 100%);
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  margin-right: 12px;
+}
+
+.header .header__logo .logo-name {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 36px;
+  color: #0C2146;
+}
+
 .header .header__links {
   margin-right: 0;
 }
@@ -39,27 +58,33 @@
   padding-right: 0 !important;
 }
 
-.header .header__middle {
+.header .header__middle-container {
+  width: 100%;
+  max-width: 668px;
+}
+
+.header .header__middle-container .header__middle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
 }
 
-.header .header__middle .header__middle-search {
+.header .header__middle-container .header__middle .header__middle-search {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-right: 14px;
+  width: 100%;
 }
 
-.header .header__middle .header__middle-search input {
-  width: 668px;
+.header .header__middle-container .header__middle .header__middle-search input {
+  width: 100%;
   max-width: 668px;
   border: none;
   outline: none;
@@ -70,7 +95,7 @@
   height: 32px;
 }
 
-.header .header__middle p {
+.header .header__middle-container .header__middle p {
   white-space: nowrap;
 }
 
@@ -117,5 +142,29 @@
   padding: 0;
   margin: 0 16px;
   background: none;
+}
+
+@media (max-width: 1600px) {
+  .header .header__middle-container {
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .header .header__middle-container {
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header .header__logo {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .header .collapse_content {
+    margin-left: 10px !important;
+  }
 }
 /*# sourceMappingURL=Header.css.map */
