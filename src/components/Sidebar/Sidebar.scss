@@ -1,5 +1,44 @@
-.sidebar{
+.sidebar {
   width: 355px;
-  border: 1px solid gray;
+  // border: 1px solid gray;
   padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  // transition: transform 0.5s ease-out;
+  transition: all 0.3s ease-in;
+  .sidebar__content-container {
+    padding-top: 50px;
+    min-width: 300px;
+  }
+  .sidebar__button-container {
+    button {
+      padding: 5px;
+      border: 1px solid gray;
+      border-left: none;
+      background: #f7f7fa;
+      img {
+        width: 30px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+@media (max-width: 1550px) {
+  .sidebar {
+    width: 305px;
+  }
+}
+@media (max-width: 992px) {
+  .sidebar {
+    width: auto;
+    position: absolute;
+    // transform: translateX(calc(30px - 100%));
+    left: -305px;
+    top: -50px;
+    z-index: 100;
+    .sidebar__content-container {
+      background: #f7f7fa;
+    }
+  }
 }

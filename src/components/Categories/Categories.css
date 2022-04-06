@@ -20,6 +20,10 @@
   border-radius: 4px;
 }
 
+.categories {
+  margin-bottom: 40px;
+}
+
 .categories .categories__navbar .navbar-toggler-icon {
   background: none;
   width: auto;
@@ -30,7 +34,7 @@
 }
 
 .categories .categories__navbar .navbar-toggler-icon::after {
-  content: "See All Category >";
+  content: "See All Category";
 }
 
 .categories .categories__navbar .categories__wrapper {
@@ -40,5 +44,11 @@
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+@media (max-width: 998px) {
+  .categories {
+    margin-bottom: 60px;
+  }
 }
 /*# sourceMappingURL=Categories.css.map */

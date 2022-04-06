@@ -12,29 +12,28 @@ const MainContent = () => {
   ];
 
   return (
-    <div className="col-9">
-      <div className="main__content-container container px-3" fluid>
-        <div className="row" style={{ margin: "0 -16px" }}>
-          <div className="col-12 px-3">
-            <div className="main__content-top d-flex">
-              {dropdownsArray.map(dropdownData => <DropdownFilter key={dropdownData.title} dropdownData={dropdownData} />)}
-            </div>
+    // <div className="col-auto">
+    <div className="main__content-container px-3 pt-3">
+      <div className="row" style={{ margin: "0 -16px" }}>
+        <div className="col-12 px-3">
+          <div className="main__content-top d-flex flex-wrap">
+            {dropdownsArray.map(dropdownData => <DropdownFilter key={dropdownData.title} dropdownData={dropdownData} />)}
           </div>
-          <div className="col-12 px-3 py-3">
-            <div className="main__content-Middle ">
-              <div className="row">
-                <ProductCard></ProductCard>
-                <ProductCard></ProductCard>
-                <ProductCard></ProductCard>
-                <ProductCard></ProductCard>
-                <ProductCard></ProductCard>
-                <ProductCard></ProductCard>
-              </div>
-            </div>
+        </div>
+        <div className="col-12 px-3 py-3">
+          <div className="main__content-Middle ">
+            {/* <div className="row gx-3"> */}
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
           </div>
         </div>
       </div>
     </div>
+    // </div>
   );
 }
 

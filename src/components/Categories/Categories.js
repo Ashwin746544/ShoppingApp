@@ -19,13 +19,13 @@ const Categories = () => {
   console.log(categoriesContent);
   return (
     <Container className="categories mt-4">
-      <Navbar bg="none" expand="md">
+      <Navbar bg="none" expand="md" className="py-0">
         <Container className="categories__navbar">
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
-            className="text mb-3"
+            className="text"
           />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse id="basic-navbar-nav pt-3">
             <Nav className="me-auto categories__wrapper">
               {categoriesContent}
             </Nav>

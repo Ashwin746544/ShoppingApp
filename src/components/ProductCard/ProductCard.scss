@@ -1,6 +1,12 @@
 @import "../../Helper/variable.scss";
 
 .product {
+  max-width: 258px;
+  height: 472px;
+  justify-self: center;
+  img {
+    width: 227px;
+  }
   .product__body {
     margin: 12px 0;
     .product__desc {

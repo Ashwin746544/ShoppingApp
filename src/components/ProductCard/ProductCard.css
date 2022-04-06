@@ -1,3 +1,14 @@
+.product {
+  max-width: 258px;
+  height: 472px;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.product img {
+  width: 227px;
+}
+
 .product .product__body {
   margin: 12px 0;
 }

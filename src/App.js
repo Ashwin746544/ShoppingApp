@@ -16,7 +16,7 @@ function App() {
       <Layout>
         <Categories />
         <div className="side__main-container">
-          <div className="row">
+          <div className="side__main-row">
             <Sidebar />
             <MainContent />
           </div>
