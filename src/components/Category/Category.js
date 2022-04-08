@@ -4,9 +4,8 @@ import { NavLink } from "react-router-dom";
 const Category = ({ category }) => {
   return (
     <NavLink
-      activeClassName="active"
+      className={({ isActive }) => `category ${isActive ? "active" : ""}`}
       to={`/${category.name}`}
-      className="category"
     >
       <div>
         <img src={category.iconImg} />

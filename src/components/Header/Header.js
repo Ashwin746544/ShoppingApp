@@ -14,7 +14,7 @@ import Logo from "../../assets/logo.svg";
 import HeaderRight from "../HeaderRight/HeaderRight";
 import HeaderMiddle from "../HeaderMiddle/HeaderMiddle";
 
-const Header = () => {
+const Header = ({ searchTextHandler }) => {
   return (
     <header className="header container-fluid px-0 py-3">
       <Navbar expand="xl" className="py-0">
@@ -26,7 +26,7 @@ const Header = () => {
             <p className="logo-name mb-0">Shopka</p>
           </Navbar.Brand>
           <div className="header__middle-container ms-auto d-none d-lg-block d-xl-none">
-            <HeaderMiddle />
+            <HeaderMiddle searchTextHandler={searchTextHandler} />
           </div>
           <div className="ms-auto d-none d-sm-block d-xl-none" >
             <HeaderRight />
@@ -55,7 +55,7 @@ const Header = () => {
               </Nav.Link>
             </Nav>
             <div className="header__middle-container me-2 me-sm-0 d-block d-lg-none d-xl-block">
-              <HeaderMiddle />
+              <HeaderMiddle searchTextHandler={searchTextHandler} />
             </div>
             <div className="my-3 my-sm-0 d-block d-sm-none d-xl-block" >
               <HeaderRight />

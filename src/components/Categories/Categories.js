@@ -16,7 +16,7 @@ const Categories = () => {
   const categoriesContent = categories.map((category) => (
     <Category key={category.name} category={category} />
   ));
-  console.log(categoriesContent);
+  // console.log(categoriesContent);
   return (
     <Container className="categories mt-4">
       <Navbar bg="none" expand="md" className="py-0">

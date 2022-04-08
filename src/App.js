@@ -8,17 +8,25 @@ import Filters from "./components/Filters/Filters";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Layout from "./components/Layout/Layout";
 import MainContent from "./components/MainContent/MainContent";
+import React, { useState } from "react";
+
 
 function App() {
+  const [searchText, setSearchText] = useState(null);
+
+  const searchTextHandler = (text) => {
+    setSearchText(text);
+  }
+
   return (
     <div className="App">
-      <Header />
+      <Header searchTextHandler={searchTextHandler} />
       <Layout>
         <Categories />
         <div className="side__main-container">
           <div className="side__main-row">
             <Sidebar />
-            <MainContent />
+            <MainContent searchText={searchText} />
           </div>
         </div>
       </Layout>

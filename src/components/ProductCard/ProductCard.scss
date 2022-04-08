@@ -6,6 +6,7 @@
   justify-self: center;
   img {
     width: 227px;
+    height: 227px;
   }
   .product__body {
     margin: 12px 0;
@@ -15,6 +16,8 @@
       color: $darkgrayColor;
       font-weight: 400;
       margin-bottom: 8px;
+      height: 74px;
+      overflow: hidden;
     }
     .product__price {
       font-size: 24px;

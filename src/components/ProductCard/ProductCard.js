@@ -3,16 +3,16 @@ import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import shoesImg from "../../assets/Products/shoes.svg";
 
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
   return (
     // <div className="col-auto">
     <Card className="p-3 pb-0 product">
-      <Card.Img variant="top" src={shoesImg} />
+      <Card.Img variant="top" src={product.image} />
       <Card.Body className="p-0 product__body">
         <p className="product__desc">
-          Lee Pucker design. Leather botinki for handsome designers. Free shipping.
+          {product.name}
         </p>
-        <p className="product__price">$ 13.95</p>
+        <p className="product__price">$ {product.salePrice}</p>
         <p className="product__desc-additional">
           1258 bids, 359 watchers
           $5.95 for shipping

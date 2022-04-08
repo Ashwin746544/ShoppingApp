@@ -3,14 +3,14 @@ body {
   font-family: "Inter", sans-serif !important;
   /* width: 1920px; */
   .side__main-container {
-    max-width: 1503px;
+    max-width: 1523px;
     margin: auto;
     padding: 0 15px;
     /* border: 1px solid lightgray; */
     .side__main-row {
       display: grid;
       grid-template-columns: auto auto;
-      grid-gap: 34px;
+      grid-gap: 24px;
     }
   }
 }
