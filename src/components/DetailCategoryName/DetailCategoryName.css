@@ -1,1 +1,6 @@
-/* No CSS *//*# sourceMappingURL=DetailCategoryName.css.map */
+.DetailCategoryName p {
+  color: inherit;
+  margin-left: 16px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=DetailCategoryName.css.map */

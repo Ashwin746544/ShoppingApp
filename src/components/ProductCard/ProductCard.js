@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
             <div className="rating__icon-container">
               <span>&#11088;&#11088;&#11088;&#11088;&#11088;</span>
             </div>
-            <span className="rating__num">4.99</span>
+            <span className="rating__num">{product.customerReviewAverage ? product.customerReviewAverage.toPrecision(2) : "2.5"}</span>
           </div>
           <Button variant="outline-primary" className="product__bottom-btn">Watch</Button>
         </div>

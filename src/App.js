@@ -9,28 +9,36 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Layout from "./components/Layout/Layout";
 import MainContent from "./components/MainContent/MainContent";
 import React, { useState } from "react";
-
+import SidebarCategoryContext from './SidebarCategoryContext';
 
 function App() {
   const [searchText, setSearchText] = useState(null);
+  const [selectedSidebarCatId, setSelectedSidebarCatId] = useState(null);
 
   const searchTextHandler = (text) => {
     setSearchText(text);
   }
 
+  const changeSelectedSidebarCategory = (id) => {
+    console.log("CATEGORY CHANGED");
+    setSelectedSidebarCatId(id);
+  }
+
   return (
-    <div className="App">
-      <Header searchTextHandler={searchTextHandler} />
-      <Layout>
-        <Categories />
-        <div className="side__main-container">
-          <div className="side__main-row">
-            <Sidebar />
-            <MainContent searchText={searchText} />
+    <SidebarCategoryContext.Provider value={{ sidebarCatId: selectedSidebarCatId, selectSidebarCategoryHandler: changeSelectedSidebarCategory }}>
+      <div className="App">
+        <Header searchTextHandler={searchTextHandler} />
+        <Layout>
+          <Categories />
+          <div className="side__main-container">
+            <div className="side__main-row">
+              <Sidebar />
+              <MainContent searchText={searchText} />
+            </div>
           </div>
-        </div>
-      </Layout>
-    </div>
+        </Layout>
+      </div>
+    </SidebarCategoryContext.Provider>
   );
 }
 

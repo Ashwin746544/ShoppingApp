@@ -1,0 +1,13 @@
+.spinner-container {
+  display: flex;
+  width: 100%;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  .spinner-border {
+    border: 8px solid purple !important;
+    border-right-color: transparent !important;
+    width: 80px;
+    height: 80px;
+  }
+}

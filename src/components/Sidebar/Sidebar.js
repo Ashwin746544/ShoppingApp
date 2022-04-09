@@ -9,6 +9,12 @@ import Backdrop from "../Backdrop/Backdrop";
 const Sidebar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [clicked, setClicked] = useState(false);
+
+  // if (sidebarOpen) {
+  //   document.body.style.overflow = "hidden";
+  // } else {
+  //   document.body.style.overflow = "auto";
+  // }
   const sidebarDisplayToggleHandler = () => {
     setClicked(true);
     setSidebarOpen((previousState) => !previousState);

@@ -4,7 +4,7 @@ import FilterOption from "../FilterOption/FilterOptions";
 
 const Filter = ({ filterTitle, filterOptions }) => {
   const filterOptionsContent = filterOptions.map((fOption) => (
-    <FilterOption name={fOption} key={fOption} />
+    <FilterOption name={fOption.name} key={fOption.name} fQuery={fOption.filterQuery} />
   ));
 
   return (

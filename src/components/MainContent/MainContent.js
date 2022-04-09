@@ -1,7 +1,9 @@
 import "./MainContent.css";
 import DropdownFilter from "../DropdownFilter/DropdownFilter";
 import ProductCard from "../ProductCard/ProductCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import SidebarCategoryContext from '../../SidebarCategoryContext';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const MY_API_KEY = "0Q75AAetcE7MZUKyrAG9DVI7";
 const dropdownsArray = [
@@ -13,18 +15,25 @@ const dropdownsArray = [
 // let cursorMark = "*";
 
 const MainContent = ({ searchText }) => {
-  console.log("component rendered!");
+
+  const sidebarCategoryCtx = useContext(SidebarCategoryContext);
+
+  console.log("component rendered!", SidebarCategoryContext.sidebarCatId);
   const [products, setProducts] = useState([]);
   const [cursorMark, setCursorMark] = useState("*");
   const [loadMore, setLoadMore] = useState(0);
   const [isAppend, setIsAppend] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   let url = "";
   if (searchText) {
     url = `https://api.bestbuy.com/v1/products(${searchText})?show=all&pageSize=5&page=1&apiKey=${MY_API_KEY}&format=json&cursorMark=${cursorMark}`;
-  } else {
+  } else if (sidebarCategoryCtx.sidebarCatId) {
+    url = `https://api.bestbuy.com/v1/products(categoryPath.id=${sidebarCategoryCtx.sidebarCatId})?show=all&pageSize=5&page=1&apiKey=${MY_API_KEY}&format=json&cursorMark=${cursorMark}`;
+  }
+  else {
     url = `https://api.bestbuy.com/v1/products?show=all&pageSize=5&page=1&apiKey=${MY_API_KEY}&format=json&cursorMark=${cursorMark}`;
   }
-
+  console.log(url);
   useEffect(() => {
     window.addEventListener('scroll', loadMoreProduct);
     // return window.removeEventListener("scroll", loadMoreProduct);
@@ -33,25 +42,31 @@ const MainContent = ({ searchText }) => {
 
   useEffect(() => {
     getProducts();
-  }, [loadMore, searchText]);
+  }, [loadMore, searchText, sidebarCategoryCtx.sidebarCatId]);
 
   const getProducts = () => {
     console.log("fetched data...");
+    setIsLoading(true);
     fetch(url)
       .then(jsonResponse => jsonResponse.json())
       .then(
         response => {
           console.log(response);
           setCursorMark(response.nextCursorMark);
-          // cursorMark = response.nextCursorMark;
           if (isAppend) {
             setProducts((prevProducts) => [...prevProducts, ...response.products]);
             setIsAppend(false);
+            setIsLoading(false);
           } else {
             setProducts([...response.products]);
+            setIsLoading(false);
           }
         }
-      ).catch(error => console.log("Error Occured::::" + error));
+      ).catch(error => {
+        console.log("Error Occured::::" + error);
+        setIsLoading(false);
+      }
+      );
   }
 
   function loadMoreProduct() {
@@ -60,6 +75,26 @@ const MainContent = ({ searchText }) => {
       setLoadMore((prevValue) => prevValue + 1);
       // getProducts();
     }
+  }
+
+  let content = null;
+  if (isLoading) {
+    if (isAppend) {
+      console.log("LOADING + APPEND");
+      content = <><div className="main__content-Middle ">
+        {/* <div className="row gx-3"> */}
+        {products.map(product => <ProductCard key={product.sku} product={product} />)}
+      </div><LoadingSpinner isAppend /></>;
+    } else {
+      console.log("ONLY LOADING");
+      content = <LoadingSpinner />;
+    }
+  } else {
+    console.log("NOT LOADING");
+    content = <div className="main__content-Middle ">
+      {/* <div className="row gx-3"> */}
+      {products.map(product => <ProductCard key={product.sku} product={product} />)}
+    </div>;
   }
 
   return (
@@ -71,11 +106,8 @@ const MainContent = ({ searchText }) => {
             {dropdownsArray.map(dropdownData => <DropdownFilter key={dropdownData.title} dropdownData={dropdownData} />)}
           </div>
         </div>
-        <div className="col-12 px-3 py-3">
-          <div className="main__content-Middle ">
-            {/* <div className="row gx-3"> */}
-            {products.map(product => <ProductCard key={product.sku} product={product} />)}
-          </div>
+        <div className="col-12 px-3 py-3" style={{ minHeight: "600px" }}>
+          {content}
         </div>
       </div>
     </div>

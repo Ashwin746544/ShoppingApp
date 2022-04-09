@@ -1,9 +1,9 @@
 import "./FilterOptions.css";
 
-const FilterOption = ({ name }) => {
+const FilterOption = ({ name, fQuery }) => {
   return (
     <div className="filterOption">
-      <input type="checkbox" />
+      <input type="checkbox" onChange={() => console.log("FILTER:" + fQuery)} />
       <span>{name}</span>
     </div>
   );
