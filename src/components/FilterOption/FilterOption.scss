@@ -1,0 +1,14 @@
+.filterOption {
+  display: flex;
+  align-items: center;
+  input {
+    width: 18px;
+    height: 18px;
+    margin: 0 19px;
+  }
+  margin-bottom: 18px;
+}
+
+.filterOption:last-child {
+  margin-bottom: 0;
+}

@@ -1,11 +1,11 @@
 import "./DetailCategoryName.css";
 import { Link } from "react-router-dom";
-import SidebarCategoryContext from '../../SidebarCategoryContext';
+import SidebarContext from '../../SidebarContext';
 import { useContext } from "react";
 
 const DetailCategoryName = ({ children: name, catId }) => {
 
-  const ctx = useContext(SidebarCategoryContext);
+  const ctx = useContext(SidebarContext);
 
   return (
     <div className="DetailCategoryName">

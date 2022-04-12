@@ -9,6 +9,7 @@ import Backdrop from "../Backdrop/Backdrop";
 const Sidebar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [clicked, setClicked] = useState(false);
+  console.log("sidebar rendered");
 
   // if (sidebarOpen) {
   //   document.body.style.overflow = "hidden";

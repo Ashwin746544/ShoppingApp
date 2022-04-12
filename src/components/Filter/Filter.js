@@ -1,10 +1,10 @@
 import "./Filter.css";
 import { Accordion } from "react-bootstrap";
-import FilterOption from "../FilterOption/FilterOptions";
+import FilterOption from "../FilterOption/FilterOption";
 
 const Filter = ({ filterTitle, filterOptions }) => {
   const filterOptionsContent = filterOptions.map((fOption) => (
-    <FilterOption name={fOption.name} key={fOption.name} fQuery={fOption.filterQuery} />
+    <FilterOption name={fOption.name} key={fOption.name} filterName={filterTitle} fQuery={fOption.filterQuery} />
   ));
 
   return (

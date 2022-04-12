@@ -15,7 +15,7 @@ const HeaderMiddle = ({ searchTextHandler }) => {
       searchText += ("search=" + word + "&");
     }
     // console.log(searchText.slice(0, searchText.length - 1) + "&salePrice>=50");
-    searchTextHandler(searchText.slice(0, searchText.length - 1) + "&salePrice>=50");
+    searchTextHandler(searchText.slice(0, searchText.length - 1));
     // searchTextHandler(enteredText);
   }
 

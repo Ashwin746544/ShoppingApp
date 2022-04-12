@@ -4,10 +4,10 @@ import {
   Dropdown
 } from 'react-bootstrap';
 
-const DropdownFilter = ({ dropdownData }) => {
+const DropdownFilter = ({ dropdownData, sortingFilterQueryHandler }) => {
   return (
     <DropdownButton id="dropdown-basic-button" className='dropdown__btn' title={dropdownData.title}>
-      {dropdownData.items.map(item => <Dropdown.Item key={item} href="#/action-1" className='dropdown__item'>{item}</Dropdown.Item>)}
+      {dropdownData.items.map(item => <Dropdown.Item key={item.name} onClick={() => sortingFilterQueryHandler(item.query)} className='dropdown__item'>{item.name}</Dropdown.Item>)}
     </DropdownButton>
   );
 }

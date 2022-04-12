@@ -3,10 +3,10 @@ const filters = [
   {
     filterTitle: "Price",
     filterOptions: [
-      { name: "$0 - $10", filterQuery: "salePrice>=0&salePrice<=10" },
-      { name: "$10 - $100", filterQuery: "salePrice>=10&salePrice<=100" },
-      { name: "$100 - $1000", filterQuery: "salePrice>=100&salePrice<=1000" },
-      { name: "$1000 - $10000", filterQuery: "salePrice>=1000&salePrice<=10000" },
+      { name: "$0 - $10", filterQuery: "(salePrice>=0&salePrice<=10)" },
+      { name: "$10 - $100", filterQuery: "(salePrice>=10&salePrice<=100)" },
+      { name: "$100 - $1000", filterQuery: "(salePrice>=100&salePrice<=1000)" },
+      { name: "$1000 - $10000", filterQuery: "(salePrice>=1000&salePrice<=10000)" },
       { name: "$10000 & Above", filterQuery: "salePrice>=10000" },
     ]
   },
