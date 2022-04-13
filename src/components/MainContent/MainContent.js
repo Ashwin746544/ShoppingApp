@@ -2,20 +2,21 @@ import "./MainContent.css";
 import DropdownFilter from "../DropdownFilter/DropdownFilter";
 import ProductCard from "../ProductCard/ProductCard";
 import { useContext, useEffect, useState } from "react";
-import SidebarContext from '../../SidebarContext';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import SidebarContext from "../../SidebarContext";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { useParams } from "react-router-dom";
 
 const MY_API_KEY = "0Q75AAetcE7MZUKyrAG9DVI7";
 const dropdownsArray = [
   {
-    title: "Sort by", items: [
+    title: "Sort by",
+    items: [
       { name: "Latest First", query: "releaseDate.dsc" },
       { name: "Price - Low to High", query: "salePrice.asc" },
       { name: "Price - High to Low", query: "salePrice.dsc" },
       { name: "Rating - Low to High", query: "customerReviewAverage.asc" },
-      { name: "Rating - High to Low", query: "customerReviewAverage.desc" }
-    ]
+      { name: "Rating - High to Low", query: "customerReviewAverage.desc" },
+    ],
   },
   { title: "condition", items: ["hello", "world", "welcome"] },
   { title: "Delivery Options", items: ["cash", "UPI", "Debit"] },
@@ -27,7 +28,6 @@ let isInitialSort = true;
 let previousSorting = null;
 
 const MainContent = ({ searchText }) => {
-
   const params = useParams();
   // const [paramsState, setParamsState] = useState(params);
   // console.log("PARAMS;;;;;;;;;;", params);
@@ -45,18 +45,22 @@ const MainContent = ({ searchText }) => {
   // const [sortingFilterQuery, setSortingFilterQuery] = useState(null);
   let url = "";
 
-
-
   useEffect(() => {
-    window.addEventListener('scroll', loadMoreProduct);
+    window.addEventListener("scroll", loadMoreProduct);
     // return window.removeEventListener("scroll", loadMoreProduct);
   }, []);
-
 
   useEffect(() => {
     getProducts();
     // }, [loadMore, searchText, sidebarCtx.sidebarCatId, selectedFilters, sortingFilterQuery, paramsState]);
-  }, [loadMore, searchText, sidebarCtx.sidebarCatId, selectedFilters, sortingFilterQuery, params]);
+  }, [
+    loadMore,
+    searchText,
+    sidebarCtx.sidebarCatId,
+    selectedFilters,
+    sortingFilterQuery,
+    params,
+  ]);
 
   //preparing filter Query
   let filterQueryArray = [];
@@ -64,23 +68,25 @@ const MainContent = ({ searchText }) => {
     let combinedFilterQuery = filter.filterQueries.join("|");
     filterQueryArray.push(combinedFilterQuery);
   }
-  let actualFilterQuery = filterQueryArray.length > 1 ? `(${filterQueryArray.join("&")})` : filterQueryArray.join("&");
+  let actualFilterQuery =
+    filterQueryArray.length > 1
+      ? `(${filterQueryArray.join("&")})`
+      : filterQueryArray.join("&");
   // console.log("actualFilterQuery", actualFilterQuery);
 
   const sortingFilterQueryHandler = (query) => {
     // console.log("PLEASE SORT", query);
     // sidebarCtx.setSortingReset(false);
     sidebarCtx.selectSortingFilterHandler(query);
-  }
+  };
 
   const getSortingFilterQuery = () => {
     return sortingFilterQuery ? "sort=" + sortingFilterQuery + "&" : "";
-  }
+  };
   const wholeQueryArray = [];
   if (params.categoryId) {
     wholeQueryArray.push(`categoryPath.id=${params.categoryId}`);
-  }
-  else if (sidebarCtx.sidebarCatId) {
+  } else if (sidebarCtx.sidebarCatId) {
     wholeQueryArray.push(`categoryPath.id=${sidebarCtx.sidebarCatId}`);
   }
   if (searchText) {
@@ -90,38 +96,44 @@ const MainContent = ({ searchText }) => {
     wholeQueryArray.push(actualFilterQuery);
   }
 
-
-
-  url = `https://api.bestbuy.com/v1/products${wholeQueryArray.join("&") ? `(${wholeQueryArray.join('&')})` : ""}?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${isAppend ? cursorMark : "*"}`;
+  url = `https://api.bestbuy.com/v1/products${
+    wholeQueryArray.join("&") ? `(${wholeQueryArray.join("&")})` : ""
+  }?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${
+    isAppend ? cursorMark : "*"
+  }`;
   // console.log("MAIN URL", url);
   const getProducts = () => {
     // console.log("fetched data...");
     setIsLoading(true);
     // console.log("URL IN GetProducts", url);
     fetch(url)
-      .then(jsonResponse => jsonResponse.json())
-      .then(
-        response => {
-          console.log("products response", response);
-          setCursorMark(response.nextCursorMark);
-          if (isAppend) {
-            setProducts((prevProducts) => [...prevProducts, ...response.products]);
-            setIsAppend(false);
-            setIsLoading(false);
-          } else {
-            setProducts([...response.products]);
-            setIsLoading(false);
-          }
+      .then((jsonResponse) => jsonResponse.json())
+      .then((response) => {
+        // console.log("products response", response);
+        setCursorMark(response.nextCursorMark);
+        if (isAppend) {
+          setProducts((prevProducts) => [
+            ...prevProducts,
+            ...response.products,
+          ]);
+          setIsAppend(false);
+          setIsLoading(false);
+        } else {
+          setProducts([...response.products]);
+          setIsLoading(false);
         }
-      ).catch(error => {
+      })
+      .catch((error) => {
         console.log("Error Occured::::" + error);
         setIsLoading(false);
-      }
-      );
-  }
+      });
+  };
 
   function loadMoreProduct() {
-    if (window.innerHeight + document.documentElement.scrollTop === (document.scrollingElement.scrollHeight)) {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.scrollingElement.scrollHeight
+    ) {
       setIsAppend(true);
       setLoadMore((prevValue) => prevValue + 1);
       // getProducts();
@@ -132,20 +144,31 @@ const MainContent = ({ searchText }) => {
   if (isLoading) {
     if (isAppend) {
       // console.log("LOADING + APPEND");
-      content = <><div className="main__content-Middle">
-        {/* <div className="row gx-3"> */}
-        {products.map(product => <ProductCard key={product.sku} product={product} />)}
-      </div><LoadingSpinner isAppend /></>;
+      content = (
+        <>
+          <div className="main__content-Middle">
+            {/* <div className="row gx-3"> */}
+            {products.map((product) => (
+              <ProductCard key={product.sku} product={product} />
+            ))}
+          </div>
+          <LoadingSpinner isAppend />
+        </>
+      );
     } else {
       // console.log("ONLY LOADING");
       content = <LoadingSpinner />;
     }
   } else {
     // console.log("NOT LOADING");
-    content = <div className="main__content-Middle ">
-      {/* <div className="row gx-3"> */}
-      {products.map(product => <ProductCard key={product.sku} product={product} />)}
-    </div>;
+    content = (
+      <div className="main__content-Middle ">
+        {/* <div className="row gx-3"> */}
+        {products.map((product) => (
+          <ProductCard key={product.sku} product={product} />
+        ))}
+      </div>
+    );
   }
 
   return (
@@ -154,7 +177,13 @@ const MainContent = ({ searchText }) => {
       <div className="row" style={{ margin: "0 -16px" }}>
         <div className="col-12 px-3">
           <div className="main__content-top d-flex flex-wrap">
-            {dropdownsArray.map(dropdownData => <DropdownFilter key={dropdownData.title} dropdownData={dropdownData} sortingFilterQueryHandler={sortingFilterQueryHandler} />)}
+            {dropdownsArray.map((dropdownData) => (
+              <DropdownFilter
+                key={dropdownData.title}
+                dropdownData={dropdownData}
+                sortingFilterQueryHandler={sortingFilterQueryHandler}
+              />
+            ))}
           </div>
         </div>
         <div className="col-12 px-3 py-3" style={{ minHeight: "600px" }}>
@@ -164,6 +193,6 @@ const MainContent = ({ searchText }) => {
     </div>
     // </div>
   );
-}
+};
 
 export default MainContent;
