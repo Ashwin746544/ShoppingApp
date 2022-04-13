@@ -8,9 +8,10 @@ import Filters from "./components/Filters/Filters";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Layout from "./components/Layout/Layout";
 import MainContent from "./components/MainContent/MainContent";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 import React, { useEffect, useState } from "react";
-import SidebarContext from './SidebarContext';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import SidebarContext from "./SidebarContext";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 const topCategoryUrl = `https://api.bestbuy.com/v1/categories?show=all&pageSize=100&apiKey=0Q75AAetcE7MZUKyrAG9DVI7&format=json&cursorMark=*`;
 
@@ -27,20 +28,18 @@ function App() {
 
   const searchTextHandler = (text) => {
     setSearchText(text);
-  }
+  };
   const getCategories = () => {
     fetch(topCategoryUrl)
-      .then(jsonResponse => jsonResponse.json())
-      .then(
-        response => {
-          console.log('category response', response);
-          setCategoriesArray(response.categories);
-        }
-      ).catch(error => {
+      .then((jsonResponse) => jsonResponse.json())
+      .then((response) => {
+        console.log("category response", response);
+        setCategoriesArray(response.categories);
+      })
+      .catch((error) => {
         console.log("Error Occured for fetching top category::::" + error);
-      }
-      );
-  }
+      });
+  };
   useEffect(() => {
     getCategories();
   }, []);
@@ -53,14 +52,16 @@ function App() {
     setFilterReset(true);
     // setSortingReset(true);
     setSortingFilterQuery(null);
-  }
+  };
   const changeSelectedSortingHandler = (query) => {
     setSortingFilterQuery(query);
-  }
+  };
 
   const addFilter = (filterName, filterQuery) => {
     const existingFilters = [...selectedFilters];
-    const currentFilterIndex = existingFilters.findIndex(filter => filter.name === filterName);
+    const currentFilterIndex = existingFilters.findIndex(
+      (filter) => filter.name === filterName
+    );
     if (currentFilterIndex === -1) {
       const newFilter = { name: filterName, filterQueries: [filterQuery] };
       existingFilters.push(newFilter);
@@ -74,13 +75,17 @@ function App() {
     setSelectedFilters(existingFilters);
     setFilterReset(false);
     // console.log("add filter", filterName, filterQuery);
-  }
+  };
   const removeFilter = (filterName, filterQuery) => {
     const existingFilters = [...selectedFilters];
-    const currentFilterIndex = existingFilters.findIndex(filter => filter.name === filterName);
+    const currentFilterIndex = existingFilters.findIndex(
+      (filter) => filter.name === filterName
+    );
     const newFilter = { ...existingFilters[currentFilterIndex] };
     const existingFilterQueries = [...newFilter.filterQueries];
-    const existingFilterQueryIndex = existingFilterQueries.findIndex(query => query === filterQuery);
+    const existingFilterQueryIndex = existingFilterQueries.findIndex(
+      (query) => query === filterQuery
+    );
     existingFilterQueries.splice(existingFilterQueryIndex, 1);
     if (existingFilterQueries.length == 0) {
       existingFilters.splice(currentFilterIndex, 1);
@@ -90,21 +95,23 @@ function App() {
     }
     setSelectedFilters(existingFilters);
     // console.log("remove filter", filterName, filterQuery);
-  }
+  };
 
   return (
-    <SidebarContext.Provider value={{
-      sidebarCatId: selectedSidebarCatId,
-      selectSidebarCategoryHandler: changeSelectedSidebarCategory,
-      addFilter: addFilter,
-      removeFilter: removeFilter,
-      selectedFilters: selectedFilters,
-      resetFilter: filterReset,
-      // resetSorting: sortingReset,
-      // setSortingReset: setSortingReset,
-      sortingFilterQuery: sortingFilterQuery,
-      selectSortingFilterHandler: changeSelectedSortingHandler
-    }}>
+    <SidebarContext.Provider
+      value={{
+        sidebarCatId: selectedSidebarCatId,
+        selectSidebarCategoryHandler: changeSelectedSidebarCategory,
+        addFilter: addFilter,
+        removeFilter: removeFilter,
+        selectedFilters: selectedFilters,
+        resetFilter: filterReset,
+        // resetSorting: sortingReset,
+        // setSortingReset: setSortingReset,
+        sortingFilterQuery: sortingFilterQuery,
+        selectSortingFilterHandler: changeSelectedSortingHandler,
+      }}
+    >
       <div className="App">
         <Header searchTextHandler={searchTextHandler} />
         <Layout>
@@ -113,8 +120,15 @@ function App() {
             <div className="side__main-row">
               <Sidebar categoriesArray={categoriesArray} />
               <Routes>
-                <Route path="/" element={<MainContent searchText={searchText} />} />
-                <Route path="/category/:categoryId" element={<MainContent searchText={searchText} />} />
+                <Route
+                  path="/"
+                  element={<MainContent searchText={searchText} />}
+                />
+                <Route
+                  path="/category/:categoryId"
+                  element={<MainContent searchText={searchText} />}
+                />
+                <Route path="/product/:productId" element={<ProductDetail />} />
               </Routes>
             </div>
           </div>
