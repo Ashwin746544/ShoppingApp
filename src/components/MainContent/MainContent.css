@@ -40,6 +40,12 @@
   }
 }
 
+@media (min-width: 992px) and (max-width: 1200px) {
+  .main__content-container {
+    min-width: 63%;
+  }
+}
+
 @media (max-width: 900px) {
   .main__content-container .main__content-Middle {
     -ms-grid-columns: 1fr 1fr;

@@ -1,14 +1,15 @@
 import "./Category.css";
 import { NavLink } from "react-router-dom";
+import concertIcon from '../../assets/Catagories/concert.svg';
 
 const Category = ({ category }) => {
   return (
     <NavLink
       className={({ isActive }) => `category ${isActive ? "active" : ""}`}
-      to={`/${category.name}`}
+      to={`/category/${category.id}`}
     >
       <div>
-        <img src={category.iconImg} />
+        <img src={concertIcon} alt="category" />
         <p>{category.name}</p>
       </div>
     </NavLink>

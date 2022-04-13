@@ -6,7 +6,7 @@ import LeftArrow from "../../assets/left.svg";
 import { useState } from "react";
 import Backdrop from "../Backdrop/Backdrop";
 
-const Sidebar = () => {
+const Sidebar = ({ categoriesArray }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [clicked, setClicked] = useState(false);
   console.log("sidebar rendered");
@@ -27,7 +27,7 @@ const Sidebar = () => {
       {/* <div className="sidebar" style={{ transform: sidebarOpen ? "translateX(0)" : (clicked && "translateX(calc(30px - 100%))") }}> */}
       <div className="sidebar" style={{ left: sidebarOpen ? "0" : (clicked && "-305px") }}>
         <div className="sidebar__content-container">
-          <SidebarCategorises />
+          <SidebarCategorises categoriesArray={categoriesArray} />
           <Filters />
         </div>
         <div className="sidebar__button-container d-block d-lg-none">

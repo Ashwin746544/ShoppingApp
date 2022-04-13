@@ -6,8 +6,10 @@
 }
 
 .product img {
-  width: 227px;
   height: 227px;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .product .product__body {

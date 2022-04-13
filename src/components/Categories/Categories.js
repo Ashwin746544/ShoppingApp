@@ -5,20 +5,28 @@ import ConcertIcon from "../../assets/Catagories/concert.svg";
 import fitnessIcon from "../../assets/Catagories/fitness.svg";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import Category from "../Category/Category";
+import { useEffect, useState } from "react";
 
-const Categories = () => {
-  const categories = [
-    { name: "Clothing & Shoes", iconImg: HangerIcon },
-    { name: "Entertainment", iconImg: CinemaIcon },
-    { name: "Music", iconImg: ConcertIcon },
-    { name: "Sport & Lifestyle", iconImg: fitnessIcon },
-  ];
+
+const Categories = ({ categoriesArray }) => {
+
+  const [categories, setCategories] = useState([]);
+
+
+  useEffect(() => {
+    const transformedCategories = categoriesArray.slice(11, 21).map(topCategory => {
+      return { name: topCategory.name, id: topCategory.id }
+    });
+    setCategories(transformedCategories);
+  }, [categoriesArray]);
+
+
   const categoriesContent = categories.map((category) => (
     <Category key={category.name} category={category} />
   ));
   // console.log(categoriesContent);
   return (
-    <Container className="categories mt-4">
+    <Container className="categories mt-4" fluid>
       <Navbar bg="none" expand="md" className="py-0">
         <Container className="categories__navbar">
           <Navbar.Toggle

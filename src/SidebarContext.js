@@ -6,7 +6,10 @@ const SidebarContext = React.createContext({
   selectedFilters: [],
   addFilter: () => { },
   removeFilter: () => { },
-  resetFilter: false
+  resetFilter: false,
+  resetSorting: false,
+  sortingFilterQuery: null,
+  selectSortingFilterHandler: () => { }
 });
 
 export default SidebarContext;

@@ -1,9 +1,11 @@
 .active {
-  color: red !important;
+  color: #2264d1 !important;
+  font-weight: 700;
 }
 
 .category {
   text-decoration: none;
+  color: #787885;
 }
 
 .category div {
@@ -25,7 +27,10 @@
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.018em;
-  color: #787885;
   margin: 0;
+}
+
+.category:hover {
+  background-color: #ededf0;
 }
 /*# sourceMappingURL=Category.css.map */

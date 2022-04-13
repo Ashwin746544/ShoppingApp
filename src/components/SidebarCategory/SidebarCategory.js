@@ -3,7 +3,7 @@ import DetailCategoryName from "../DetailCategoryName/DetailCategoryName";
 
 const SidebarCategory = ({ sidebarCategory }) => {
 
-  console.log("inside sidebar Category", sidebarCategory);
+  // console.log("inside sidebar Category", sidebarCategory);
   // const content = sidebarCategory.options.map((option, index) => <Detail key={index} title={option.optionTitle}>
   //   {option.optionCategories.map((optionCategory, index) => <DetailCategoryName key={index}>{optionCategory}</DetailCategoryName>)}
   // </Detail>);

@@ -4,19 +4,21 @@ import ProductCard from "../ProductCard/ProductCard";
 import { useContext, useEffect, useState } from "react";
 import SidebarContext from '../../SidebarContext';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { useParams } from "react-router-dom";
 
 const MY_API_KEY = "0Q75AAetcE7MZUKyrAG9DVI7";
 const dropdownsArray = [
   {
     title: "Sort by", items: [
+      { name: "Latest First", query: "releaseDate.dsc" },
       { name: "Price - Low to High", query: "salePrice.asc" },
       { name: "Price - High to Low", query: "salePrice.dsc" },
       { name: "Rating - Low to High", query: "customerReviewAverage.asc" },
       { name: "Rating - High to Low", query: "customerReviewAverage.desc" }
     ]
   },
-  // { title: "condition", items: ["hello", "world", "welcome"] },
-  // { title: "Delivery Options", items: ["cash", "UPI", "Debit"] },
+  { title: "condition", items: ["hello", "world", "welcome"] },
+  { title: "Delivery Options", items: ["cash", "UPI", "Debit"] },
 ];
 
 // let cursorMark = "*";
@@ -26,54 +28,24 @@ let previousSorting = null;
 
 const MainContent = ({ searchText }) => {
 
+  const params = useParams();
+  // const [paramsState, setParamsState] = useState(params);
+  // console.log("PARAMS;;;;;;;;;;", params);
+  console.log("Main Contern Rendered");
+
   const sidebarCtx = useContext(SidebarContext);
   const selectedFilters = sidebarCtx.selectedFilters;
-  console.log("component rendered with Filter!", sidebarCtx.selectedFilters);
+  const sortingFilterQuery = sidebarCtx.sortingFilterQuery;
+  // console.log("component rendered with Filter!", sidebarCtx.selectedFilters);
   const [products, setProducts] = useState([]);
   const [cursorMark, setCursorMark] = useState("*");
   const [loadMore, setLoadMore] = useState(0);
   const [isAppend, setIsAppend] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [sortingFilterQuery, setSortingFilterQuery] = useState(null);
+  // const [sortingFilterQuery, setSortingFilterQuery] = useState(null);
   let url = "";
 
-  //preparing filter Query
-  let filterQueryArray = [];
-  for (let filter of selectedFilters) {
-    let combinedFilterQuery = filter.filterQueries.join("|");
-    filterQueryArray.push(combinedFilterQuery);
-  }
-  let actualFilterQuery = filterQueryArray.join("&");
-  console.log("actualFilterQuery", actualFilterQuery);
 
-  const sortingFilterQueryHandler = (query) => {
-    console.log("PLEASE SORT", query);
-    setSortingFilterQuery(query);
-  }
-
-  const getSortingFilterQuery = () => {
-    return sortingFilterQuery ? "sort=" + sortingFilterQuery + "&" : "";
-  }
-
-  if (searchText) {
-    if (selectedFilters.length !== 0) {
-      url = `https://api.bestbuy.com/v1/products(${searchText}&${actualFilterQuery})?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${isAppend ? cursorMark : "*"}`;
-    } else {
-      url = `https://api.bestbuy.com/v1/products(${searchText})?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${isAppend ? cursorMark : "*"}`;
-    }
-  } else if (sidebarCtx.sidebarCatId) {
-    if (selectedFilters.length !== 0) {
-      url = `https://api.bestbuy.com/v1/products(categoryPath.id=${sidebarCtx.sidebarCatId}&${actualFilterQuery})?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${isAppend ? cursorMark : "*"}`;
-    } else {
-      url = `https://api.bestbuy.com/v1/products(categoryPath.id=${sidebarCtx.sidebarCatId})?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${isAppend ? cursorMark : "*"}`;
-    }
-  }
-  else if (selectedFilters.length !== 0) {
-    url = `https://api.bestbuy.com/v1/products(${actualFilterQuery})?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${isAppend ? cursorMark : "*"}`;
-  }
-  else {
-    url = `https://api.bestbuy.com/v1/products?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${isAppend ? cursorMark : "*"}`;
-  }
 
   useEffect(() => {
     window.addEventListener('scroll', loadMoreProduct);
@@ -83,17 +55,54 @@ const MainContent = ({ searchText }) => {
 
   useEffect(() => {
     getProducts();
-  }, [loadMore, searchText, sidebarCtx.sidebarCatId, selectedFilters, sortingFilterQuery]);
+    // }, [loadMore, searchText, sidebarCtx.sidebarCatId, selectedFilters, sortingFilterQuery, paramsState]);
+  }, [loadMore, searchText, sidebarCtx.sidebarCatId, selectedFilters, sortingFilterQuery, params]);
 
+  //preparing filter Query
+  let filterQueryArray = [];
+  for (let filter of selectedFilters) {
+    let combinedFilterQuery = filter.filterQueries.join("|");
+    filterQueryArray.push(combinedFilterQuery);
+  }
+  let actualFilterQuery = filterQueryArray.length > 1 ? `(${filterQueryArray.join("&")})` : filterQueryArray.join("&");
+  // console.log("actualFilterQuery", actualFilterQuery);
+
+  const sortingFilterQueryHandler = (query) => {
+    // console.log("PLEASE SORT", query);
+    // sidebarCtx.setSortingReset(false);
+    sidebarCtx.selectSortingFilterHandler(query);
+  }
+
+  const getSortingFilterQuery = () => {
+    return sortingFilterQuery ? "sort=" + sortingFilterQuery + "&" : "";
+  }
+  const wholeQueryArray = [];
+  if (params.categoryId) {
+    wholeQueryArray.push(`categoryPath.id=${params.categoryId}`);
+  }
+  else if (sidebarCtx.sidebarCatId) {
+    wholeQueryArray.push(`categoryPath.id=${sidebarCtx.sidebarCatId}`);
+  }
+  if (searchText) {
+    wholeQueryArray.push(searchText);
+  }
+  if (actualFilterQuery) {
+    wholeQueryArray.push(actualFilterQuery);
+  }
+
+
+
+  url = `https://api.bestbuy.com/v1/products${wholeQueryArray.join("&") ? `(${wholeQueryArray.join('&')})` : ""}?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${isAppend ? cursorMark : "*"}`;
+  // console.log("MAIN URL", url);
   const getProducts = () => {
     // console.log("fetched data...");
     setIsLoading(true);
-    console.log("URL IN GetProducts", url);
+    // console.log("URL IN GetProducts", url);
     fetch(url)
       .then(jsonResponse => jsonResponse.json())
       .then(
         response => {
-          console.log(response);
+          console.log("products response", response);
           setCursorMark(response.nextCursorMark);
           if (isAppend) {
             setProducts((prevProducts) => [...prevProducts, ...response.products]);

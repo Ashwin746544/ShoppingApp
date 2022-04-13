@@ -5,8 +5,11 @@
   height: 472px;
   justify-self: center;
   img {
-    width: 227px;
+    // width: 227px;
+    // height: 227px;
     height: 227px;
+    width: 100%;
+    object-fit: contain;
   }
   .product__body {
     margin: 12px 0;
