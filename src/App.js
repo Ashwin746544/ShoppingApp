@@ -33,7 +33,7 @@ function App() {
     fetch(topCategoryUrl)
       .then((jsonResponse) => jsonResponse.json())
       .then((response) => {
-        console.log("category response", response);
+        // console.log("category response", response);
         setCategoriesArray(response.categories);
       })
       .catch((error) => {
@@ -118,7 +118,7 @@ function App() {
           <Categories categoriesArray={categoriesArray} />
           <div className="side__main-container">
             <div className="side__main-row">
-              <Sidebar categoriesArray={categoriesArray} />
+              {/* <Sidebar categoriesArray={categoriesArray} /> */}
               <Routes>
                 <Route
                   path="/"
@@ -132,6 +132,9 @@ function App() {
               </Routes>
             </div>
           </div>
+          {/* <Routes>
+            <Route path="/product/:productId" element={<ProductDetail />} />
+          </Routes> */}
         </Layout>
       </div>
     </SidebarContext.Provider>

@@ -1,1 +1,54 @@
-/* No CSS *//*# sourceMappingURL=ProductDetail.css.map */
+.Product-detail-container {
+  height: 100vh;
+}
+
+.Product-detail-container .product-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 20px;
+  border: 2px solid gray;
+}
+
+.Product-detail-container .product-detail .product__img-container {
+  border: 2px solid gray;
+}
+
+.Product-detail-container .product-detail .product__detail-content .product__detail-name {
+  font-size: 20px;
+  font-weight: 500px;
+}
+
+.Product-detail-container .product-detail .product__detail-content .product__detail-desc {
+  font-size: 15px;
+  font-weight: 300px;
+}
+
+.Product-detail-container .product-detail .product__detail-content .product__detail-specifications table {
+  max-height: 350px;
+  display: block;
+  overflow: auto;
+  border: 1px solid lightgray;
+  border-collapse: collapse;
+}
+
+.Product-detail-container .product-detail .product__detail-content .product__detail-specifications table tr {
+  border-bottom: 1px solid lightgray;
+}
+
+.Product-detail-container .product-detail .product__detail-content .product__detail-specifications table tr th,
+.Product-detail-container .product-detail .product__detail-content .product__detail-specifications table tr td {
+  padding: 8px 10px;
+}
+
+.Product-detail-container .product-detail .product__detail-content .product__detail-price .price {
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.Product-detail-container .product-detail .product__detail-content .badge {
+  background-color: gray;
+  color: white;
+  padding: 10px;
+}
+/*# sourceMappingURL=ProductDetail.css.map */
