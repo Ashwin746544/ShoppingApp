@@ -1,22 +1,26 @@
-.product {
+.product__wrapper-link {
+  text-decoration: none;
+}
+
+.product__wrapper-link .product {
   max-width: 258px;
   height: 472px;
   -ms-grid-column-align: center;
       justify-self: center;
 }
 
-.product img {
+.product__wrapper-link .product img {
   height: 227px;
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.product .product__body {
+.product__wrapper-link .product .product__body {
   margin: 12px 0;
 }
 
-.product .product__body .product__desc {
+.product__wrapper-link .product .product__body .product__desc {
   font-size: 16px;
   line-height: 24px;
   color: #19191D;
@@ -26,7 +30,7 @@
   overflow: hidden;
 }
 
-.product .product__body .product__price {
+.product__wrapper-link .product .product__body .product__price {
   font-size: 24px;
   line-height: 36px;
   font-weight: 700;
@@ -34,7 +38,7 @@
   margin-bottom: 7px;
 }
 
-.product .product__body .product__desc-additional {
+.product__wrapper-link .product .product__body .product__desc-additional {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -42,7 +46,7 @@
   margin-bottom: 8px;
 }
 
-.product .product__body .product__bottom {
+.product__wrapper-link .product .product__body .product__bottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,7 +55,7 @@
           align-items: center;
 }
 
-.product .product__body .product__bottom .btn {
+.product__wrapper-link .product .product__body .product__bottom .btn {
   padding: 4px 12px;
   font-weight: 500;
   font-size: 14px;
@@ -62,7 +66,7 @@
   border-radius: 4px;
 }
 
-.product .product__body .product__bottom .rating-container {
+.product__wrapper-link .product .product__body .product__bottom .rating-container {
   height: 32px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -73,7 +77,7 @@
   margin-right: 17px;
 }
 
-.product .product__body .product__bottom .rating-container .rating__icon-container {
+.product__wrapper-link .product .product__body .product__bottom .rating-container .rating__icon-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -83,11 +87,11 @@
   margin-right: 10.47px;
 }
 
-.product .product__body .product__bottom .rating-container .rating__icon-container span {
+.product__wrapper-link .product .product__body .product__bottom .rating-container .rating__icon-container span {
   font-size: 10.32px;
 }
 
-.product .product__body .product__bottom .rating-container .rating__num {
+.product__wrapper-link .product .product__body .product__bottom .rating-container .rating__num {
   height: 22px;
   font-weight: 500;
   font-size: 14px;
