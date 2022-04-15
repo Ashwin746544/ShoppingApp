@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import SidebarContext from "../../SidebarContext";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { useParams } from "react-router-dom";
+import useHttpRequest from '../../useHttpRequest';
 
 const MY_API_KEY = "0Q75AAetcE7MZUKyrAG9DVI7";
 const dropdownsArray = [
@@ -18,14 +19,10 @@ const dropdownsArray = [
       { name: "Rating - High to Low", query: "customerReviewAverage.desc" },
     ],
   },
-  { title: "condition", items: ["hello", "world", "welcome"] },
-  { title: "Delivery Options", items: ["cash", "UPI", "Debit"] },
+  // { title: "condition", items: ["hello", "world", "welcome"] },
+  // { title: "Delivery Options", items: ["cash", "UPI", "Debit"] },
 ];
 
-// let cursorMark = "*";
-let previousRequestType = "default";
-let isInitialSort = true;
-let previousSorting = null;
 
 const MainContent = ({ searchText }) => {
   const params = useParams();
@@ -36,12 +33,14 @@ const MainContent = ({ searchText }) => {
   const sidebarCtx = useContext(SidebarContext);
   const selectedFilters = sidebarCtx.selectedFilters;
   const sortingFilterQuery = sidebarCtx.sortingFilterQuery;
+  const { isLoading, isError, fetchRequest } = useHttpRequest();
   // console.log("component rendered with Filter!", sidebarCtx.selectedFilters);
   const [products, setProducts] = useState([]);
   const [cursorMark, setCursorMark] = useState("*");
   const [loadMore, setLoadMore] = useState(0);
   const [isAppend, setIsAppend] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [isError, setIsError] = useState(false);
   // const [sortingFilterQuery, setSortingFilterQuery] = useState(null);
   let url = "";
 
@@ -52,14 +51,13 @@ const MainContent = ({ searchText }) => {
 
   useEffect(() => {
     getProducts();
-    // }, [loadMore, searchText, sidebarCtx.sidebarCatId, selectedFilters, sortingFilterQuery, paramsState]);
   }, [
     loadMore,
     searchText,
     sidebarCtx.sidebarCatId,
     selectedFilters,
     sortingFilterQuery,
-    params,
+    params.categoryId
   ]);
 
   //preparing filter Query
@@ -96,38 +94,50 @@ const MainContent = ({ searchText }) => {
     wholeQueryArray.push(actualFilterQuery);
   }
 
-  url = `https://api.bestbuy.com/v1/products${
-    wholeQueryArray.join("&") ? `(${wholeQueryArray.join("&")})` : ""
-  }?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${
-    isAppend ? cursorMark : "*"
-  }`;
-  // console.log("MAIN URL", url);
-  const getProducts = () => {
-    // console.log("fetched data...");
-    setIsLoading(true);
-    // console.log("URL IN GetProducts", url);
-    fetch(url)
-      .then((jsonResponse) => jsonResponse.json())
-      .then((response) => {
-        // console.log("products response", response);
-        setCursorMark(response.nextCursorMark);
-        if (isAppend) {
-          setProducts((prevProducts) => [
-            ...prevProducts,
-            ...response.products,
-          ]);
-          setIsAppend(false);
-          setIsLoading(false);
-        } else {
-          setProducts([...response.products]);
-          setIsLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.log("Error Occured::::" + error);
-        setIsLoading(false);
-      });
+  url = `https://api.bestbuy.com/v1/products${wholeQueryArray.join("&") ? `(${wholeQueryArray.join("&")})` : ""
+    }?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${isAppend ? cursorMark : "*"
+    }`;
+  console.log("MAIN URL", url);
+  const getProducts = async () => {
+    const response = await fetchRequest(url);
+    console.log(response);
+    setCursorMark(response.nextCursorMark);
+    if (isAppend) {
+      setProducts((prevProducts) => [
+        ...prevProducts,
+        ...response.products,
+      ]);
+      setIsAppend(false);
+    } else {
+      setProducts([...response.products]);
+    }
   };
+  // const getProducts = () => {
+  //   setIsLoading(true);
+  //   fetch(url)
+  //     .then((jsonResponse) => jsonResponse.json())
+  //     .then((response) => {
+  //       setCursorMark(response.nextCursorMark);
+  //       if (isAppend) {
+  //         setProducts((prevProducts) => [
+  //           ...prevProducts,
+  //           ...response.products,
+  //         ]);
+  //         setIsAppend(false);
+  //         setIsLoading(false);
+  //         setIsError(false);
+  //       } else {
+  //         setProducts([...response.products]);
+  //         setIsLoading(false);
+  //         setIsError(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error Occured::::" + error);
+  //       setIsLoading(false);
+  //       setIsError(true);
+  //     });
+  // };
 
   function loadMoreProduct() {
     if (
@@ -161,14 +171,22 @@ const MainContent = ({ searchText }) => {
     }
   } else {
     // console.log("NOT LOADING");
-    content = (
-      <div className="main__content-Middle ">
-        {/* <div className="row gx-3"> */}
-        {products.map((product) => (
-          <ProductCard key={product.sku} product={product} />
-        ))}
-      </div>
-    );
+    if (isError) {
+      content = <div className="text-center"><h1>Something Went Wrong,Try again!</h1></div>;
+    } else {
+      if (products.length == 0) {
+        content = <div className="text-center"><h1>Oops,Products not Available!</h1></div>;
+      } else {
+        content = (
+          <div className="main__content-Middle ">
+            {/* <div className="row gx-3"> */}
+            {products.map((product) => (
+              <ProductCard key={product.sku} product={product} />
+            ))}
+          </div>
+        );
+      }
+    }
   }
 
   return (

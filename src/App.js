@@ -12,6 +12,8 @@ import ProductDetail from "./components/ProductDetail/ProductDetail";
 import React, { useEffect, useState } from "react";
 import SidebarContext from "./SidebarContext";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import HomePage from "./components/HomePage/HomePage";
+import ProductDetailPage from "./components/ProductDetailpage/ProductDetailPage";
 
 const topCategoryUrl = `https://api.bestbuy.com/v1/categories?show=all&pageSize=100&apiKey=0Q75AAetcE7MZUKyrAG9DVI7&format=json&cursorMark=*`;
 
@@ -106,36 +108,16 @@ function App() {
         removeFilter: removeFilter,
         selectedFilters: selectedFilters,
         resetFilter: filterReset,
-        // resetSorting: sortingReset,
-        // setSortingReset: setSortingReset,
         sortingFilterQuery: sortingFilterQuery,
         selectSortingFilterHandler: changeSelectedSortingHandler,
       }}
     >
       <div className="App">
         <Header searchTextHandler={searchTextHandler} />
-        <Layout>
-          <Categories categoriesArray={categoriesArray} />
-          <div className="side__main-container">
-            <div className="side__main-row">
-              {/* <Sidebar categoriesArray={categoriesArray} /> */}
-              <Routes>
-                <Route
-                  path="/"
-                  element={<MainContent searchText={searchText} />}
-                />
-                <Route
-                  path="/category/:categoryId"
-                  element={<MainContent searchText={searchText} />}
-                />
-                <Route path="/product/:productId" element={<ProductDetail />} />
-              </Routes>
-            </div>
-          </div>
-          {/* <Routes>
-            <Route path="/product/:productId" element={<ProductDetail />} />
-          </Routes> */}
-        </Layout>
+        <Routes>
+          <Route path="/*" element={<HomePage categoriesArray={categoriesArray} searchText={searchText} />} />
+          <Route path="/product/:productId" element={<ProductDetailPage />} />
+        </Routes>
       </div>
     </SidebarContext.Provider>
   );

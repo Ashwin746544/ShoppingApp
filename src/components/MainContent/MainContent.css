@@ -13,6 +13,7 @@
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
   grid-gap: 16px;
 }
 
@@ -37,12 +38,6 @@
   .main__content-container .main__content-Middle {
     -ms-grid-columns: 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1200px) {
-  .main__content-container {
-    min-width: 63%;
   }
 }
 

@@ -1,0 +1,30 @@
+.relatedProducts .relatedProduct__content-container {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 20px;
+  place-items: center;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 1200px) {
+  .relatedProducts .relatedProduct__content-container {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+  .relatedProducts .relatedProduct__content-container {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .relatedProducts .relatedProduct__content-container {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+/*# sourceMappingURL=RelatedProducts.css.map */

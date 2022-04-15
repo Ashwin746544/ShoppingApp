@@ -7,6 +7,7 @@
   .main__content-Middle {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    place-items: center;
     grid-gap: 16px;
   }
 }
@@ -39,11 +40,11 @@
     }
   }
 }
-@media (min-width: 992px) and (max-width: 1200px) {
-  .main__content-container {
-    min-width: 63%;
-  }
-}
+// @media (min-width: 992px) and (max-width: 1200px) {
+//   .main__content-container {
+//     min-width: 63%;
+//   }
+// }
 @media (max-width: 900px) {
   .main__content-container {
     .main__content-top {
