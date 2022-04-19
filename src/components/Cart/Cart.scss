@@ -1,0 +1,20 @@
+.cart-container {
+  // border: 1px solid gray;
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  height: 800px;
+}
+
+@media (max-width: 800px) {
+  .cart-container {
+    width: 100%;
+    padding: 0 16px;
+  }
+}
+@media (max-width: 600px) {
+  .cart-container {
+    width: 320px;
+    padding: 0 16px;
+  }
+}

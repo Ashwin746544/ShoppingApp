@@ -9,22 +9,34 @@ import './ProductDetailPage.css';
 const ProductDetailPage = () => {
   const { pathname } = useLocation();
   // const [isLoading, setIsLoading] = useState(false);
-  // const [productDetailIsLoading, setProductIsLoading] = useState(false);
-  // const [relatedProductIsLoading, setRelatedProductsIsLoading] = useState(false);
+  const [productDetailIsLoading, setProductIsLoading] = useState(false);
+  const [relatedProductsIsLoading, setRelatedProductsIsLoading] = useState(false);
+  const [productDetailHasError, setProductDetailHasError] = useState(false);
+  const [relatedProductsHasError, setRelatedProductsHasError] = useState(false);
+
+  const isLoading = productDetailIsLoading || relatedProductsIsLoading;
+  const isError = productDetailHasError || relatedProductsHasError;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  // return (!productDetailIsLoading && !relatedProductIsLoading) ? <>
-  //   <ProductDetail setProductIsLoading={setProductIsLoading} />
-  //   <RelatedProducts setRelatedProductsIsLoading={setRelatedProductsIsLoading} />
-  // </> : <LoadingSpinner />;
-  return (
-    <>
-      <ProductDetail />
-      <RelatedProducts />
-    </>
-  );
+  return !isLoading ? (
+    isError ? <div className='d-flex align-items-center justify-content-center' style={{ height: "100vh", }}><h1>Something went Wrong!</h1></div> :
+      <>
+        <ProductDetail setProductIsLoading={setProductIsLoading} setProductDetailHasError={setProductDetailHasError} />
+        <RelatedProducts setRelatedProductsIsLoading={setRelatedProductsIsLoading} setRelatedProductsHasError={setRelatedProductsHasError} />
+      </>)
+    : <>
+      <ProductDetail setProductIsLoading={setProductIsLoading} setProductDetailHasError={setProductDetailHasError} />
+      <RelatedProducts setRelatedProductsIsLoading={setRelatedProductsIsLoading} setRelatedProductsHasError={setRelatedProductsHasError} />
+      <LoadingSpinner shouldCoverPage={true} />
+    </>;
+  // return (
+  //   <>
+  //     <ProductDetail />
+  //     <RelatedProducts />
+  //   </>
+  // );
 }
 
 export default ProductDetailPage;

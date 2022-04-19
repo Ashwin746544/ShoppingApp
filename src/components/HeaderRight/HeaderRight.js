@@ -3,8 +3,12 @@ import {
   Badge,
 } from "react-bootstrap";
 import UserIcon from "../../assets/user.svg";
+import { useNavigate } from 'react-router-dom';
+import { CartContex } from '../../Cart-Contex';
+import { useContext } from "react";
 const HeaderRight = () => {
-
+  const navigate = useNavigate();
+  const cartCtx = useContext(CartContex);
   return (
     <div className="d-flex header__Right ps-3 ps-xl-0">
       <Button
@@ -13,10 +17,10 @@ const HeaderRight = () => {
       >
         SignIn
       </Button>
-      <button className="general-btn text actions header__Right-cart">
+      <button className="general-btn text actions header__Right-cart" onClick={() => navigate("/mycart")}>
         My Cart{" "}
         <Badge className="badge" bg="danger">
-          5
+          {cartCtx.cartItems.length}
         </Badge>
       </button>
       <button className="header__Right-profile">

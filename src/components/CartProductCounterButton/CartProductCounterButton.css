@@ -1,0 +1,12 @@
+.product__order-counter {
+  border: 1px solid lightgray;
+  padding: 8px 10px;
+}
+
+.product__order-counter-btn {
+  border: none;
+  background-color: none;
+  height: 30px;
+  width: 30px;
+}
+/*# sourceMappingURL=CartProductCounterButton.css.map */

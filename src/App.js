@@ -14,6 +14,8 @@ import SidebarContext from "./SidebarContext";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import ProductDetailPage from "./components/ProductDetailpage/ProductDetailPage";
+import UserCartPage from "./components/UserCartPage/UserCartPage";
+import CartContextProvider from "./Cart-Contex";
 
 const topCategoryUrl = `https://api.bestbuy.com/v1/categories?show=all&pageSize=100&apiKey=0Q75AAetcE7MZUKyrAG9DVI7&format=json&cursorMark=*`;
 
@@ -100,26 +102,29 @@ function App() {
   };
 
   return (
-    <SidebarContext.Provider
-      value={{
-        sidebarCatId: selectedSidebarCatId,
-        selectSidebarCategoryHandler: changeSelectedSidebarCategory,
-        addFilter: addFilter,
-        removeFilter: removeFilter,
-        selectedFilters: selectedFilters,
-        resetFilter: filterReset,
-        sortingFilterQuery: sortingFilterQuery,
-        selectSortingFilterHandler: changeSelectedSortingHandler,
-      }}
-    >
-      <div className="App">
-        <Header searchTextHandler={searchTextHandler} />
-        <Routes>
-          <Route path="/*" element={<HomePage categoriesArray={categoriesArray} searchText={searchText} />} />
-          <Route path="/product/:productId" element={<ProductDetailPage />} />
-        </Routes>
-      </div>
-    </SidebarContext.Provider>
+    <CartContextProvider>
+      <SidebarContext.Provider
+        value={{
+          sidebarCatId: selectedSidebarCatId,
+          selectSidebarCategoryHandler: changeSelectedSidebarCategory,
+          addFilter: addFilter,
+          removeFilter: removeFilter,
+          selectedFilters: selectedFilters,
+          resetFilter: filterReset,
+          sortingFilterQuery: sortingFilterQuery,
+          selectSortingFilterHandler: changeSelectedSortingHandler,
+        }}
+      >
+        <div className="App">
+          <Header searchTextHandler={searchTextHandler} />
+          <Routes>
+            <Route path="/*" element={<HomePage categoriesArray={categoriesArray} searchText={searchText} />} />
+            <Route path="/product/:productId" element={<ProductDetailPage />} />
+            <Route path="/mycart" element={<UserCartPage />} />
+          </Routes>
+        </div>
+      </SidebarContext.Provider>
+    </CartContextProvider>
   );
 }
 

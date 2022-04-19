@@ -4,8 +4,8 @@ import ProductCard from '../ProductCard/ProductCard';
 import './RelatedProducts.css';
 import useHttpRequest from '../../useHttpRequest';
 
-// const RelatedProducts = ({ setRelatedProductsIsLoading }) => {
-const RelatedProducts = () => {
+const RelatedProducts = ({ setRelatedProductsIsLoading, setRelatedProductsHasError }) => {
+  // const RelatedProducts = () => {
   const params = useParams();
   const { isLoading, isError, fetchRequest } = useHttpRequest();
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -26,9 +26,11 @@ const RelatedProducts = () => {
     //     setRelatedProducts(transformedProducts);
     //   });
   }, []);
-  // useEffect(() => {
-  //   setRelatedProductsIsLoading(isLoading);
-  // }, [isLoading]);
+  useEffect(() => {
+    console.log("Related Products Loading", isLoading);
+    setRelatedProductsHasError(isError);
+    setRelatedProductsIsLoading(isLoading);
+  }, [isLoading, isError]);
   const getRelatedProducts = async () => {
     const response = await fetchRequest(`https://api.bestbuy.com/v1/products/${params.productId}/alsoViewed?pageSize=50&apiKey=0Q75AAetcE7MZUKyrAG9DVI7`);
     const transformedProducts = response.results.map(relatedProduct => {
