@@ -1,0 +1,24 @@
+.orderSummary {
+  max-width: 400px;
+  .orderSummary__title {
+  }
+  .orderSummary__content {
+    box-shadow: #091e4240 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    overflow: auto;
+    table {
+      tr {
+        td {
+          padding: 10px;
+          p {
+            margin-bottom: 0;
+          }
+          img {
+            width: 100px;
+            max-height: 150px;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+}

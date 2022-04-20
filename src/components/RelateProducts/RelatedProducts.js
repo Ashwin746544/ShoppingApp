@@ -11,21 +11,7 @@ const RelatedProducts = ({ setRelatedProductsIsLoading, setRelatedProductsHasErr
   const [relatedProducts, setRelatedProducts] = useState([]);
   useEffect(() => {
     getRelatedProducts();
-    // fetch(`https://api.bestbuy.com/v1/products/${params.productId}/alsoViewed?pageSize=50&apiKey=0Q75AAetcE7MZUKyrAG9DVI7`)
-    //   .then(jsonResponse => jsonResponse.json())
-    //   .then(response => {
-    //     const transformedProducts = response.results.map(relatedProduct => {
-    //       return {
-    //         sku: relatedProduct.sku,
-    //         image: relatedProduct.images.standard,
-    //         name: relatedProduct.names.title,
-    //         salePrice: relatedProduct.prices.regular,
-    //         customerReviewAverage: relatedProduct.customerReviews.averageScore
-    //       };
-    //     });
-    //     setRelatedProducts(transformedProducts);
-    //   });
-  }, []);
+  }, [params]);
   useEffect(() => {
     console.log("Related Products Loading", isLoading);
     setRelatedProductsHasError(isError);

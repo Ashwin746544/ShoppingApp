@@ -24,16 +24,9 @@ const ProductDetail = ({ setProductIsLoading, setProductDetailHasError }) => {
   }
 
   useEffect(() => {
+    console.log("PARAMS Changes");
     getProductDetail();
-    // fetch(
-    //   `https://api.bestbuy.com/v1/products(sku=${params.productId})?format=json&show=all&apiKey=0Q75AAetcE7MZUKyrAG9DVI7`
-    // )
-    //   .then((jsonResponse) => jsonResponse.json())
-    //   .then((response) => {
-    //     setProductDetail(response.products[0]);
-    //     console.log("product detail", response);
-    //   });
-  }, []);
+  }, [params]);
   useEffect(() => {
     console.log("Product Detail Loading:", isLoading);
     setProductDetailHasError(isError);
@@ -54,7 +47,7 @@ const ProductDetail = ({ setProductIsLoading, setProductDetailHasError }) => {
     <section className="Product-detail-container container mt-5">
       <div className="product-detail">
         <div className="product__img-container">
-          <img src={productDetail.image} />
+          <img src={productDetail.image} alt={productDetail.name} />
         </div>
         <div className="product__detail-content">
           <p className="product__detail-name mb-0">{productDetail.name}</p>

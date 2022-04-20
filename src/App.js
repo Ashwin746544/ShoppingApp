@@ -1,14 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header/Header";
-import Categories from "./components/Categories/Categories";
-import Filter from "./components/Filter/Filter";
-import SidebarCategorises from "./components/SidebarCategories/SidebarCategories";
-import Filters from "./components/Filters/Filters";
-import Sidebar from "./components/Sidebar/Sidebar";
-import Layout from "./components/Layout/Layout";
-import MainContent from "./components/MainContent/MainContent";
-import ProductDetail from "./components/ProductDetail/ProductDetail";
 import React, { useEffect, useState } from "react";
 import SidebarContext from "./SidebarContext";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -16,6 +8,7 @@ import HomePage from "./components/HomePage/HomePage";
 import ProductDetailPage from "./components/ProductDetailpage/ProductDetailPage";
 import UserCartPage from "./components/UserCartPage/UserCartPage";
 import CartContextProvider from "./Cart-Contex";
+import OrderPage from "./components/OrderPage/OrderPage";
 
 const topCategoryUrl = `https://api.bestbuy.com/v1/categories?show=all&pageSize=100&apiKey=0Q75AAetcE7MZUKyrAG9DVI7&format=json&cursorMark=*`;
 
@@ -121,6 +114,7 @@ function App() {
             <Route path="/*" element={<HomePage categoriesArray={categoriesArray} searchText={searchText} />} />
             <Route path="/product/:productId" element={<ProductDetailPage />} />
             <Route path="/mycart" element={<UserCartPage />} />
+            <Route path="/order" element={<OrderPage />} />
           </Routes>
         </div>
       </SidebarContext.Provider>
