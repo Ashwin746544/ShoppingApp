@@ -1,11 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./OrderSummary.css";
 import { CartContex } from '../../Cart-Contex';
 
-const OrderSummary = () => {
+const OrderSummary = ({ setTotalBill }) => {
   const cartCtx = useContext(CartContex);
-  const subTotal = cartCtx.cartItems.reduce((sum, cartItem) => (cartItem.salePrice * cartItem.quantity) + sum, 0);
+  const subTotal = cartCtx.cartItems.reduce((sum, cartItem) => ((cartItem.salePrice * cartItem.quantity) + cartItem.shippingCost) + sum, 0);
   const total = subTotal + ((subTotal * 6.75) / 100);
+
+  useEffect(() => {
+    setTotalBill(total);
+  }, [setTotalBill, total]);
+
 
   return (
     <div className="orderSummary">
@@ -36,7 +41,7 @@ const OrderSummary = () => {
                 <p>Items Subtotal</p>
               </td>
               <td>
-                <p><strong>${subTotal}</strong></p>
+                <p><strong>${subTotal.toFixed(2)}</strong></p>
               </td>
             </tr>
             <tr>

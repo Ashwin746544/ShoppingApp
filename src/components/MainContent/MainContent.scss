@@ -1,6 +1,25 @@
 .main__content-container {
   box-shadow: 0px 1px 2px rgba(58, 58, 68, 0.24), 0px 2px 4px rgba(90, 91, 106, 0.24);
   border-radius: 8px;
+  height: calc(100vh - 256px); //for taking scroll inside maincontent
+  overflow: auto;
+  // min-height: calc(100vh - 256px);
+  position: relative;
+  .main__content-upBtn {
+    position: fixed;
+    padding: 10px;
+    // top: 90%;
+    // left: calc(100% - 16px);
+    z-index: 10;
+    right: 20px;
+    bottom: 20px;
+    border: none;
+    border-radius: 50%;
+    background-color: #2264d1;
+    img {
+      width: 20px;
+    }
+  }
   .main__content-top {
     grid-gap: 16px;
   }

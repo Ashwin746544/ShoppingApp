@@ -1,14 +1,28 @@
 .sidebar {
   width: 355px;
   // border: 1px solid gray;
-  padding-bottom: 100px;
   display: flex;
   justify-content: start;
   // transition: transform 0.5s ease-out;
   transition: all 0.3s ease-in;
+  height: calc(100vh - 256px);
   .sidebar__content-container {
-    padding-top: 50px;
+    overflow: auto;
     min-width: 300px;
+    .store__btn {
+      line-height: 36px;
+      font-size: 24px;
+      padding: 8px 12px;
+      border: 1px solid #9dc2ff;
+      background-color: white;
+      color: #2264d1;
+      width: calc(100% - 32px);
+      margin: 10px 16px;
+      margin-bottom: 20px;
+      img {
+        margin-right: 10px;
+      }
+    }
   }
   .sidebar__button-container {
     button {

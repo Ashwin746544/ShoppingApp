@@ -22,6 +22,7 @@
 
 .categories {
   margin-bottom: 40px;
+  min-height: 112px;
 }
 
 .categories .categories__navbar .navbar-toggler-icon {

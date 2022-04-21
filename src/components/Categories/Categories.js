@@ -6,6 +6,7 @@ import fitnessIcon from "../../assets/Catagories/fitness.svg";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import Category from "../Category/Category";
 import { useEffect, useState } from "react";
+import ErrorAlert from "../ErrorAlert/ErrorAlert";
 
 
 const Categories = ({ categoriesArray }) => {
@@ -20,10 +21,19 @@ const Categories = ({ categoriesArray }) => {
     setCategories(transformedCategories);
   }, [categoriesArray]);
 
+  // let categoriesContent = "";
+  // if (categoriesArray.length === 0) {
+  //   categoriesContent = <ErrorAlert />
+  // } else {
+  //   categoriesContent = categories.map((category) => (
+  //     <Category key={category.name} category={category} />
+  //   ));
+  // }
 
   const categoriesContent = categories.map((category) => (
     <Category key={category.name} category={category} />
   ));
+
   // console.log(categoriesContent);
   return (
     <Container className="categories mt-4" fluid>

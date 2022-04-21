@@ -5,6 +5,7 @@ import ProductDetail from '../ProductDetail/ProductDetail';
 import RelatedProducts from '../RelateProducts/RelatedProducts';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import './ProductDetailPage.css';
+import ErrorAlert from '../ErrorAlert/ErrorAlert';
 
 const ProductDetailPage = () => {
   const { pathname } = useLocation();
@@ -21,7 +22,8 @@ const ProductDetailPage = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
   return !isLoading ? (
-    isError ? <div className='d-flex align-items-center justify-content-center' style={{ height: "100vh", }}><h1>Something went Wrong!</h1></div> :
+    // isError ? <div className='d-flex align-items-center justify-content-center' style={{ height: "100vh", }}><h1>Something went Wrong!</h1></div> :
+    isError ? <ErrorAlert /> :
       <>
         <ProductDetail setProductIsLoading={setProductIsLoading} setProductDetailHasError={setProductDetailHasError} />
         <RelatedProducts setRelatedProductsIsLoading={setRelatedProductsIsLoading} setRelatedProductsHasError={setRelatedProductsHasError} />

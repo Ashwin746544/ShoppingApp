@@ -1,11 +1,13 @@
 import "./MainContent.css";
 import DropdownFilter from "../DropdownFilter/DropdownFilter";
 import ProductCard from "../ProductCard/ProductCard";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import SidebarContext from "../../SidebarContext";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { useParams } from "react-router-dom";
 import useHttpRequest from '../../useHttpRequest';
+import ErrorAlert from "../ErrorAlert/ErrorAlert";
+import arrowUpIcon from '../../assets/arrowUp.svg';
 
 const MY_API_KEY = "0Q75AAetcE7MZUKyrAG9DVI7";
 const dropdownsArray = [
@@ -25,7 +27,9 @@ const dropdownsArray = [
 
 
 const MainContent = ({ searchText }) => {
+
   const params = useParams();
+  const ref = useRef();
   // const [paramsState, setParamsState] = useState(params);
   // console.log("PARAMS;;;;;;;;;;", params);
   console.log("Main Contern Rendered");
@@ -45,7 +49,7 @@ const MainContent = ({ searchText }) => {
   let url = "";
 
   useEffect(() => {
-    window.addEventListener("scroll", loadMoreProduct);
+    ref.current.addEventListener("scroll", loadMoreProduct);
     // return window.removeEventListener("scroll", loadMoreProduct);
   }, []);
 
@@ -112,40 +116,17 @@ const MainContent = ({ searchText }) => {
       setProducts([...response.products]);
     }
   };
-  // const getProducts = () => {
-  //   setIsLoading(true);
-  //   fetch(url)
-  //     .then((jsonResponse) => jsonResponse.json())
-  //     .then((response) => {
-  //       setCursorMark(response.nextCursorMark);
-  //       if (isAppend) {
-  //         setProducts((prevProducts) => [
-  //           ...prevProducts,
-  //           ...response.products,
-  //         ]);
-  //         setIsAppend(false);
-  //         setIsLoading(false);
-  //         setIsError(false);
-  //       } else {
-  //         setProducts([...response.products]);
-  //         setIsLoading(false);
-  //         setIsError(false);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error Occured::::" + error);
-  //       setIsLoading(false);
-  //       setIsError(true);
-  //     });
-  // };
 
   function loadMoreProduct() {
     if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.scrollingElement.scrollHeight
+      // window.innerHeight + document.documentElement.scrollTop ===
+      // document.scrollingElement.scrollHeight
+      ref.current.clientHeight + ref.current.scrollTop ===
+      ref.current.scrollHeight
     ) {
       setIsAppend(true);
       setLoadMore((prevValue) => prevValue + 1);
+      console.log("load More");
       // getProducts();
     }
   }
@@ -153,11 +134,9 @@ const MainContent = ({ searchText }) => {
   let content = null;
   if (isLoading) {
     if (isAppend) {
-      // console.log("LOADING + APPEND");
       content = (
         <>
           <div className="main__content-Middle">
-            {/* <div className="row gx-3"> */}
             {products.map((product) => (
               <ProductCard key={product.sku} product={product} />
             ))}
@@ -166,13 +145,12 @@ const MainContent = ({ searchText }) => {
         </>
       );
     } else {
-      // console.log("ONLY LOADING");
       content = <LoadingSpinner />;
     }
   } else {
-    // console.log("NOT LOADING");
     if (isError) {
-      content = <div className="text-center"><h1>Something Went Wrong,Try again!</h1></div>;
+      // content = <div className="text-center"><h1>Something Went Wrong,Try again!</h1></div>;
+      content = <ErrorAlert />;
     } else {
       if (products.length == 0) {
         content = <div className="text-center"><h1>Oops,Products not Available!</h1></div>;
@@ -191,7 +169,8 @@ const MainContent = ({ searchText }) => {
 
   return (
     // <div className="col-auto">
-    <div className="main__content-container px-3 pt-3">
+    <div className="main__content-container px-3 pt-3" ref={ref}>
+      <button className="main__content-upBtn" onClick={() => ref.current.scrollTop = 0}><img src={arrowUpIcon} alt="up" /></button>
       <div className="row" style={{ margin: "0 -16px" }}>
         <div className="col-12 px-3">
           <div className="main__content-top d-flex flex-wrap">

@@ -7,7 +7,7 @@ import { CartContex } from '../../Cart-Contex';
 const CartItem = ({ cartItem }) => {
   const cartCtx = useContext(CartContex);
   console.log(cartItem);
-  const total = (cartItem.salePrice * cartItem.quantity) + cartItem.shippingCost;
+  const total = ((cartItem.salePrice * cartItem.quantity) + cartItem.shippingCost) || 0;
   return (
     <div className='cartItem mb-2'>
       <div className="CartItem__item-detail">

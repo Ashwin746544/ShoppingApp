@@ -13,6 +13,9 @@ body {
       grid-gap: 24px;
     }
   }
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 ::-webkit-scrollbar {

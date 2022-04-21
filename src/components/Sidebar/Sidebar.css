@@ -1,6 +1,5 @@
 .sidebar {
   width: 355px;
-  padding-bottom: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9,11 +8,28 @@
           justify-content: start;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
+  height: calc(100vh - 256px);
 }
 
 .sidebar .sidebar__content-container {
-  padding-top: 50px;
+  overflow: auto;
   min-width: 300px;
+}
+
+.sidebar .sidebar__content-container .store__btn {
+  line-height: 36px;
+  font-size: 24px;
+  padding: 8px 12px;
+  border: 1px solid #9dc2ff;
+  background-color: white;
+  color: #2264d1;
+  width: calc(100% - 32px);
+  margin: 10px 16px;
+  margin-bottom: 20px;
+}
+
+.sidebar .sidebar__content-container .store__btn img {
+  margin-right: 10px;
 }
 
 .sidebar .sidebar__button-container button {

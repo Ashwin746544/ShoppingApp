@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 export const CartContex = React.createContext({
   cartItems: [],
   addItemToCart: () => { },
-  removeItemFromCart: () => { }
+  removeItemFromCart: () => { },
+  emptyCartHandler: () => { }
 });
 
 const CartContextProvider = ({ children }) => {
@@ -51,8 +52,12 @@ const CartContextProvider = ({ children }) => {
     console.log("Item Removed From Cart:", sku);
   }
 
+  const emptyCartHandler = () => {
+    setCartItems([]);
+  }
+
   return <CartContex.Provider
-    value={{ cartItems: cartItems, addItemToCart: addItemHandler, removeItemFromCart: removeItemHandler }}
+    value={{ cartItems: cartItems, addItemToCart: addItemHandler, removeItemFromCart: removeItemHandler, emptyCartHandler: emptyCartHandler }}
   >{children}</CartContex.Provider>
 }
 
