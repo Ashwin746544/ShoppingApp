@@ -15,7 +15,7 @@ const OrderStatus = () => {
               <p>Your order number is: <strong>600004503</strong></p>
               <p>We'll email you a order details and tracking Info. </p>
               <p>Thank you for your purchase. </p>
-              <Link to="/" className="mt-3 d-inline-block">Continue Shopping</Link>
+              <Link to="/bestBuy-shoppingApp/product/" className="mt-3 d-inline-block">Continue Shopping</Link>
             </div>
 
           </div>

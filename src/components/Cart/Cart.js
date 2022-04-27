@@ -15,9 +15,9 @@ const Cart = () => {
       {cartItems.map(cartItem => <CartItem key={cartItem.name} cartItem={cartItem} />)}
       {
         cartCtx.cartItems.length > 0
-          ? <Button variant='primary' className='w-100 mt-4' onClick={() => navigate("/order")}>Checkout</Button>
+          ? <Button variant='primary' className='w-100 mt-4' onClick={() => navigate("/bestBuy-shoppingApp/order")}>Checkout</Button>
           : <div className='d-flex justify-content-center align-items-center' style={{ height: "500px", fontSize: "20px" }}>
-            <strong> No Items Added To The Cart,<Link to="/">Explore Products</Link></strong>
+            <strong> No Items Added To The Cart,<Link to="/bestBuy-shoppingApp/product/">Explore Products</Link></strong>
           </div>}
     </div>
   );

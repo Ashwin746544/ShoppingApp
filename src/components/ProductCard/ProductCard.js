@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   return (
     // <div className="col-auto">
-    <Link to={`/product/${product.sku}`} className="product__wrapper-link">
+    <Link to={`/bestBuy-shoppingApp/product/${product.sku}`} className="product__wrapper-link">
       <Card className="p-3 pb-0 product">
         <Card.Img variant="top" src={product.image} />
         <Card.Body className="p-0 product__body">

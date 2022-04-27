@@ -6,7 +6,7 @@ const Category = ({ category }) => {
   return (
     <NavLink
       className={({ isActive }) => `category ${isActive ? "active" : ""}`}
-      to={`/category/${category.id}`}
+      to={`/bestBuy-shoppingApp/category/${category.id}`}
     >
       <div>
         <img src={concertIcon} alt="category" />

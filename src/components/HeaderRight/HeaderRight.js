@@ -17,7 +17,7 @@ const HeaderRight = () => {
       >
         SignIn
       </Button>
-      <button className="general-btn text actions header__Right-cart" onClick={() => navigate("/mycart")}>
+      <button className="general-btn text actions header__Right-cart" onClick={() => navigate("/bestBuy-shoppingApp/mycart")}>
         My Cart{" "}
         <Badge className="badge" bg="danger">
           {cartCtx.cartItems.length}
