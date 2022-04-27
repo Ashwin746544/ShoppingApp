@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 
 const useHttpRequest = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const fetchRequest = async (url) => {
+  const fetchRequest = useCallback(async (url) => {
     setIsLoading(true);
     try {
       const jsonResponse = await fetch(url);
@@ -18,48 +18,9 @@ const useHttpRequest = () => {
     } catch (error) {
       setIsLoading(false);
       setIsError(true);
+      return false;
     }
-
-    // setCursorMark(response.nextCursorMark);
-    // if (isAppend) {
-    //   setProducts((prevProducts) => [
-    //     ...prevProducts,
-    //     ...response.products,
-    //   ]);
-    //   setIsAppend(false);
-    //   setIsLoading(false);
-    //   setIsError(false);
-    // } else {
-    //   setProducts([...response.products]);
-    //   setIsLoading(false);
-    //   setIsError(false);
-    // }
-  }
-  // setIsLoading(true);
-  // fetch(url)
-  //   .then((jsonResponse) => jsonResponse.json())
-  //   .then((response) => {
-  //     // setCursorMark(response.nextCursorMark);
-  //     // if (isAppend) {
-  //     //   setProducts((prevProducts) => [
-  //     //     ...prevProducts,
-  //     //     ...response.products,
-  //     //   ]);
-  //     //   setIsAppend(false);
-  //     //   setIsLoading(false);
-  //     //   setIsError(false);
-  //     // } else {
-  //     //   setProducts([...response.products]);
-  //     //   setIsLoading(false);
-  //     //   setIsError(false);
-  //     // }
-  //     return response;
-  //   })
-  //   .catch((error) => {
-  //     console.log("Error Occured::::" + error);
-  //     setIsLoading(false);
-  //     setIsError(true);
-  //   });
+  }, [])
   return {
     isLoading,
     isError,

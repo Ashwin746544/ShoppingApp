@@ -5,6 +5,8 @@
     max-width: 258px;
     height: 472px;
     justify-self: center;
+    transition: 0.5s;
+
     img {
       // width: 227px;
       // height: 227px;
@@ -74,5 +76,9 @@
         }
       }
     }
+  }
+  .product:hover {
+    transform: scale3d(1.006, 1.006, 1);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
   }
 }

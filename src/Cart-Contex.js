@@ -13,17 +13,14 @@ const CartContextProvider = ({ children }) => {
 
   useEffect(() => {
     const existingCartItems = JSON.parse(localStorage.getItem("cartItems"));
-    console.log("getting cartItems from localStorage", existingCartItems);
     setCartItems(existingCartItems);
   }, []);
   useEffect(() => {
-    console.log("setting cartItems in localStorage", cartItems);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
   const addItemHandler = (cartItem) => {
     const oldCartItems = [...cartItems];
-    console.log("Item Added To Cart:", cartItem);
     const existingCartItemIndex = oldCartItems.findIndex(item => item.sku === cartItem.sku);
     const existingCartItem = oldCartItems[existingCartItemIndex];
     if (existingCartItem) {
@@ -49,7 +46,6 @@ const CartContextProvider = ({ children }) => {
       }
     }
     setCartItems(oldCartItems);
-    console.log("Item Removed From Cart:", sku);
   }
 
   const emptyCartHandler = () => {

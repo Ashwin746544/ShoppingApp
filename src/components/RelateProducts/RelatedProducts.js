@@ -1,25 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
 import './RelatedProducts.css';
 import useHttpRequest from '../../useHttpRequest';
 
 const RelatedProducts = ({ setRelatedProductsIsLoading, setRelatedProductsHasError }) => {
-  // const RelatedProducts = () => {
   const params = useParams();
   const { isLoading, isError, fetchRequest } = useHttpRequest();
   const [relatedProducts, setRelatedProducts] = useState([]);
-  useEffect(() => {
-    getRelatedProducts();
-  }, [params]);
-  useEffect(() => {
-    console.log("Related Products Loading", isLoading);
-    setRelatedProductsHasError(isError);
-    setRelatedProductsIsLoading(isLoading);
-  }, [isLoading, isError]);
-  const getRelatedProducts = async () => {
+
+
+  const getRelatedProducts = useCallback(async () => {
     const response = await fetchRequest(`https://api.bestbuy.com/v1/products/${params.productId}/alsoViewed?pageSize=50&apiKey=0Q75AAetcE7MZUKyrAG9DVI7`);
-    const transformedProducts = response.results.map(relatedProduct => {
+    const transformedProducts = response ? response.results.map(relatedProduct => {
       return {
         sku: relatedProduct.sku,
         image: relatedProduct.images.standard,
@@ -27,9 +20,21 @@ const RelatedProducts = ({ setRelatedProductsIsLoading, setRelatedProductsHasErr
         salePrice: relatedProduct.prices.regular,
         customerReviewAverage: relatedProduct.customerReviews.averageScore
       };
-    });
+    }) : [];
     setRelatedProducts(transformedProducts);
-  }
+  }, [fetchRequest, params]);
+
+
+  useEffect(() => {
+    getRelatedProducts();
+  }, [getRelatedProducts]);
+
+
+  useEffect(() => {
+    setRelatedProductsHasError(isError);
+    setRelatedProductsIsLoading(isLoading);
+  }, [isLoading, isError, setRelatedProductsHasError, setRelatedProductsIsLoading]);
+
   return (
     <section className='relatedProducts container mt-5'>
       <h2 className='relatedProducts__title text-center'>Product You May also Like</h2>

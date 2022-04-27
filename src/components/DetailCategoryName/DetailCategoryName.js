@@ -1,5 +1,4 @@
 import "./DetailCategoryName.css";
-import { Link } from "react-router-dom";
 import SidebarContext from '../../SidebarContext';
 import { useContext } from "react";
 

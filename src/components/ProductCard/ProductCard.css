@@ -7,6 +7,8 @@
   height: 472px;
   -ms-grid-column-align: center;
       justify-self: center;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .product__wrapper-link .product img {
@@ -97,5 +99,12 @@
   font-size: 14px;
   line-height: 22px;
   color: #5e6366;
+}
+
+.product__wrapper-link .product:hover {
+  -webkit-transform: scale3d(1.006, 1.006, 1);
+          transform: scale3d(1.006, 1.006, 1);
+  -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
 }
 /*# sourceMappingURL=ProductCard.css.map */

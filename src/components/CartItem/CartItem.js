@@ -30,7 +30,6 @@ const CartItem = ({ cartItem }) => {
             itemRemoved={() => cartCtx.removeItemFromCart(cartItem.sku)}
             count={cartItem.quantity}
           />
-          {/* <Button variant="danger" className='mt-1'>Remove From Cart</Button> */}
           <Button variant="danger" className='ms-2' onClick={() => cartCtx.removeItemFromCart(cartItem.sku, true)}>X</Button>
         </div>
       </div>

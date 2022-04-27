@@ -11,11 +11,11 @@ const ShippingInfo = ({ totalBill, setOrderPlaced }) => {
   const [validated, setValidated] = useState(false);
   let timeoutId = "";
   let lastChangedInput = "";
-  console.log("Shipping Info rendered!");
 
   const checkoutHandler = (shippingInfo) => {
-    console.log("USER DATA::", shippingInfo);
-    localStorage.setItem("order", JSON.stringify({ orderItems: cartCtx.cartItems, shippingInfo: shippingInfo, totalAmout: totalBill }));
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push({ orderItems: cartCtx.cartItems, shippingInfo: shippingInfo, totalAmout: totalBill });
+    localStorage.setItem("orders", JSON.stringify(orders));
     cartCtx.emptyCartHandler();
     setOrderPlaced(true);
   }
@@ -30,7 +30,6 @@ const ShippingInfo = ({ totalBill, setOrderPlaced }) => {
       }, 500);
     } else {
       timeoutId = setTimeout(() => {
-        console.log("setting data");
         setUserData((prevUserData) => ({ ...prevUserData, [key]: value }));
       }, 500);
       lastChangedInput = key;
@@ -38,7 +37,6 @@ const ShippingInfo = ({ totalBill, setOrderPlaced }) => {
   }
 
   const submitHandler = (event) => {
-    console.log(userData);
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -124,7 +122,7 @@ const ShippingInfo = ({ totalBill, setOrderPlaced }) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Button variant="primary" type="submit">
-            Order Now
+            Place Order
           </Button>
         </Form>
       </div>

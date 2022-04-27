@@ -1,6 +1,4 @@
-import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import MainContent from '../MainContent/MainContent';
+import { useState } from 'react';
 import ProductDetail from '../ProductDetail/ProductDetail';
 import RelatedProducts from '../RelateProducts/RelatedProducts';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -8,8 +6,6 @@ import './ProductDetailPage.css';
 import ErrorAlert from '../ErrorAlert/ErrorAlert';
 
 const ProductDetailPage = () => {
-  const { pathname } = useLocation();
-  // const [isLoading, setIsLoading] = useState(false);
   const [productDetailIsLoading, setProductIsLoading] = useState(false);
   const [relatedProductsIsLoading, setRelatedProductsIsLoading] = useState(false);
   const [productDetailHasError, setProductDetailHasError] = useState(false);
@@ -18,12 +14,8 @@ const ProductDetailPage = () => {
   const isLoading = productDetailIsLoading || relatedProductsIsLoading;
   const isError = productDetailHasError || relatedProductsHasError;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
   return !isLoading ? (
-    // isError ? <div className='d-flex align-items-center justify-content-center' style={{ height: "100vh", }}><h1>Something went Wrong!</h1></div> :
-    isError ? <ErrorAlert /> :
+    isError ? <ErrorAlert onlyRefresh /> :
       <>
         <ProductDetail setProductIsLoading={setProductIsLoading} setProductDetailHasError={setProductDetailHasError} />
         <RelatedProducts setRelatedProductsIsLoading={setRelatedProductsIsLoading} setRelatedProductsHasError={setRelatedProductsHasError} />
@@ -33,12 +25,6 @@ const ProductDetailPage = () => {
       <RelatedProducts setRelatedProductsIsLoading={setRelatedProductsIsLoading} setRelatedProductsHasError={setRelatedProductsHasError} />
       <LoadingSpinner shouldCoverPage={true} />
     </>;
-  // return (
-  //   <>
-  //     <ProductDetail />
-  //     <RelatedProducts />
-  //   </>
-  // );
 }
 
 export default ProductDetailPage;

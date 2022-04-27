@@ -26,8 +26,8 @@
 }
 
 .header .header__logo .logo-container {
-  background: -webkit-gradient(linear, left top, right top, from(#2979FF), to(#4C589E));
-  background: linear-gradient(90deg, #2979FF 0%, #4C589E 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#2979ff), to(#4c589e));
+  background: linear-gradient(90deg, #2979ff 0%, #4c589e 100%);
   border-radius: 6px;
   width: 40px;
   height: 40px;
@@ -41,7 +41,7 @@
   font-weight: 500;
   font-size: 36px;
   line-height: 36px;
-  color: #0C2146;
+  color: #0c2146;
 }
 
 .header .header__links {
@@ -50,12 +50,24 @@
 
 .header .header__links .header__links-link:first-child {
   letter-spacing: 0.0075em;
-  color: #5A5B6A;
+  color: #5a5b6a;
   font-weight: 500;
 }
 
 .header .header__links .header__links-link:last-child {
   padding-right: 0 !important;
+}
+
+@media (min-width: 610px) {
+  .header .header__right-container-out {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header .header__right-container-out {
+    display: none !important;
+  }
 }
 
 .header .header__middle-container {
@@ -91,7 +103,7 @@
   background-color: inherit;
   padding: 0;
   font-size: 20px;
-  color: #19191D;
+  color: #19191d;
   height: 32px;
 }
 
@@ -100,7 +112,7 @@
 }
 
 .header .header__Right .actions {
-  font-family: 'Quicksand' !important;
+  font-family: "Quicksand" !important;
   font-weight: 700 !important;
   color: #2264D1 !important;
 }
@@ -108,7 +120,7 @@
 .header .header__Right .header__Right-signIn {
   font-size: 24px;
   line-height: 24px;
-  border: 1px solid #9DC2FF;
+  border: 1px solid #9dc2ff;
   height: 40px !important;
   margin-right: 21px;
 }

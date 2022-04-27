@@ -1,16 +1,16 @@
 import { Alert, Button } from 'react-bootstrap';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-function ErrorAlert({ setShowErrorAlert }) {
+function ErrorAlert({ onlyRefresh }) {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   return (
-    <Alert variant="danger" onClose={() => { }} className="m-3">
+    <Alert variant="danger" className="m-3">
       <Alert.Heading>Something Went Wrong!</Alert.Heading>
       <p>
         It's Look like you are under slow internet Connection,please try again.
       </p>
-      <Button variant="danger" onClick={() => navigate(0)}>Try Again</Button>
+      <Button onClick={() => onlyRefresh ? navigate(pathname) : navigate(0)} variant="danger">Try Again</Button>
     </Alert>
   );
 }

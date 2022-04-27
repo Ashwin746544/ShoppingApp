@@ -1,6 +1,5 @@
 import "./ProductCard.css";
-import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
-import shoesImg from "../../assets/Products/shoes.svg";
+import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {

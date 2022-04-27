@@ -24,9 +24,10 @@ const HeaderRight = () => {
         </Badge>
       </button>
       <button className="header__Right-profile">
-        <img src={UserIcon} />
+        <img src={UserIcon} alt="user" />
       </button>
-    </div>);
+    </div>
+  );
 }
 
 export default HeaderRight;

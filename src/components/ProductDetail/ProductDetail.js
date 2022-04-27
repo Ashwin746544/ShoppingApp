@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import useHttpRequest from '../../useHttpRequest';
 import { Button } from 'react-bootstrap';
 import CartProductCounterButton from "../CartProductCounterButton/CartProductcounterButton";
@@ -14,7 +14,7 @@ const ProductDetail = ({ setProductIsLoading, setProductDetailHasError }) => {
   const { isLoading, isError, fetchRequest } = useHttpRequest();
   const [productDetail, setProductDetail] = useState({});
   const showProductCounter = cartCtx.cartItems.find(item => item.sku === productDetail.sku) ? true : false;
-  // console.log("product Detail:", productDetail);
+
   const cartItemDetail = {
     sku: productDetail.sku,
     name: productDetail.name,
@@ -23,21 +23,22 @@ const ProductDetail = ({ setProductIsLoading, setProductDetailHasError }) => {
     shippingCost: productDetail.shippingCost
   }
 
+  const getProductDetail = useCallback(async () => {
+    const response = await fetchRequest(`https://api.bestbuy.com/v1/products(sku=${params.productId})?format=json&show=all&apiKey=0Q75AAetcE7MZUKyrAG9DVI7`);
+    if (response) {
+      setProductDetail(response.products[0]);
+    }
+  }, [params, fetchRequest])
+
   useEffect(() => {
-    console.log("PARAMS Changes");
     getProductDetail();
-  }, [params]);
+  }, [getProductDetail]);
+
+  // Error and Loading Handling
   useEffect(() => {
-    console.log("Product Detail Loading:", isLoading);
     setProductDetailHasError(isError);
     setProductIsLoading(isLoading);
-  }, [isLoading, isError]);
-  const getProductDetail = async () => {
-    console.log(params.productId);
-    const response = await fetchRequest(`https://api.bestbuy.com/v1/products(sku=${params.productId})?format=json&show=all&apiKey=0Q75AAetcE7MZUKyrAG9DVI7`);
-    setProductDetail(response.products[0]);
-    console.log(response.products[0]);
-  }
+  }, [isLoading, isError, setProductDetailHasError, setProductIsLoading]);
 
   const getProductCountFromCartItem = () => {
     const currentCartItem = cartCtx.cartItems.find(item => item.sku === productDetail.sku);
@@ -51,9 +52,6 @@ const ProductDetail = ({ setProductIsLoading, setProductDetailHasError }) => {
         </div>
         <div className="product__detail-content">
           <p className="product__detail-name mb-0">{productDetail.name}</p>
-          {/* <p className="product__detail-desc">
-            {productDetail.longDescription}
-          </p> */}
           <p className="text-success mb-0 mt-3" style={{ fontWeight: 600 }}>Regular Price</p>
           <div className="product__detail-price my-2 mt-0 d-flex align-items-center">
             <span className="price">${productDetail.salePrice} </span>
@@ -85,9 +83,6 @@ const ProductDetail = ({ setProductIsLoading, setProductDetailHasError }) => {
               )}
             </div>
           </div>
-          {/* <p className="product__detail-desc mt-2">
-            {productDetail.longDescription}
-          </p> */}
           <div className="product__detail-specifications my-2">
             <p className="mb-2">
               <strong>Specifications:</strong>

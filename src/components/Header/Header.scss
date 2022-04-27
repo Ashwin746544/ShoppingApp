@@ -1,136 +1,142 @@
 @import "../../Helper/typography.scss";
 @import "../../Helper/variable.scss";
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
 .header {
-    .header__logo {
-        margin-right: 6px;
-        .logo-container{
-          background: linear-gradient(90deg, #2979FF 0%, #4C589E 100%);
-          border-radius: 6px;
-          width: 40px;
-          height: 40px;
-          color: white;
-          font-weight: bold;
-          font-size: 25px;
-          margin-right: 12px;
-        }
-        .logo-name{
-          font-weight: 500;
-          font-size: 36px;
-          line-height: 36px;   
-          color: #0C2146;
-        }
+  .header__logo {
+    margin-right: 6px;
+    .logo-container {
+      background: linear-gradient(90deg, #2979ff 0%, #4c589e 100%);
+      border-radius: 6px;
+      width: 40px;
+      height: 40px;
+      color: white;
+      font-weight: bold;
+      font-size: 25px;
+      margin-right: 12px;
     }
-    .header__links {
-        margin-right: 0;
-        .header__links-link:first-child {
-            letter-spacing: 0.0075em;
-            color: #5A5B6A;
-            font-weight: 500;
-        }
-        .header__links-link:last-child {
-            padding-right: 0 !important;
-        }
+    .logo-name {
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 36px;
+      color: #0c2146;
     }
-    .header__middle-container{
-      width: 100%;
-      max-width: 668px;
-  
+  }
+  .header__links {
+    margin-right: 0;
+    .header__links-link:first-child {
+      letter-spacing: 0.0075em;
+      color: #5a5b6a;
+      font-weight: 500;
+    }
+    .header__links-link:last-child {
+      padding-right: 0 !important;
+    }
+  }
+  .header__right-container-out {
+    @media (min-width: 610px) {
+      display: block !important;
+    }
+    @media (min-width: 1200px) {
+      display: none !important;
+    }
+  }
+  .header__middle-container {
+    width: 100%;
+    max-width: 668px;
+
     .header__middle {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      .header__middle-search {
         display: flex;
         align-items: center;
         width: 100%;
-        .header__middle-search {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            // margin-right: 14px;
-            input {
-                width: 100%;
-                max-width: 668px;
-                border: none;
-                outline: none;
-                background-color: inherit;
-                padding: 0;
-                font-size: 20px;
-                color: #19191D;
-                height: 32px;
-            }
+        // margin-right: 14px;
+        input {
+          width: 100%;
+          max-width: 668px;
+          border: none;
+          outline: none;
+          background-color: inherit;
+          padding: 0;
+          font-size: 20px;
+          color: #19191d;
+          height: 32px;
         }
-        p {
-            white-space: nowrap;
-        }
+      }
+      p {
+        white-space: nowrap;
+      }
     }
   }
-    .header__Right {
-        .actions {
-            font-family: 'Quicksand' !important;
-            font-weight: 700 !important;
-            color: $primaryColor !important;
-        }
-        .header__Right-signIn {
-            font-size: 24px;
-            line-height: 24px;
-            border: 1px solid #9DC2FF;
-            height: 40px !important;
-            margin-right: 21px;
-        }
-        .header__Right-signIn:hover {
-            color: white !important;
-        }
-        .header__Right-cart {
-            box-shadow: 0px 2px 4px rgba(27, 78, 163, 0.2), 0px 4px 8px rgba(41, 121, 255, 0.2);
-            line-height: 30px;
-            font-size: 20px;
-            border: none;
-            padding: 5px 12px;
-            position: relative;
-            .badge {
-                position: absolute;
-                font-size: 14px;
-                line-height: 18px;
-                right: -10px;
-                top: -10px;
-                color: white;
-                border-radius: 50%;
-            }
-        }
-        .header__Right-profile {
-            border: none;
-            padding: 0;
-            margin: 0 16px;
-            background: none;
-        }
+  .header__Right {
+    .actions {
+      font-family: "Quicksand" !important;
+      font-weight: 700 !important;
+      color: $primaryColor !important;
     }
+    .header__Right-signIn {
+      font-size: 24px;
+      line-height: 24px;
+      border: 1px solid #9dc2ff;
+      height: 40px !important;
+      margin-right: 21px;
+    }
+    .header__Right-signIn:hover {
+      color: white !important;
+    }
+    .header__Right-cart {
+      box-shadow: 0px 2px 4px rgba(27, 78, 163, 0.2), 0px 4px 8px rgba(41, 121, 255, 0.2);
+      line-height: 30px;
+      font-size: 20px;
+      border: none;
+      padding: 5px 12px;
+      position: relative;
+      .badge {
+        position: absolute;
+        font-size: 14px;
+        line-height: 18px;
+        right: -10px;
+        top: -10px;
+        color: white;
+        border-radius: 50%;
+      }
+    }
+    .header__Right-profile {
+      border: none;
+      padding: 0;
+      margin: 0 16px;
+      background: none;
+    }
+  }
 }
 
-
-@media (max-width: 1600px){
+@media (max-width: 1600px) {
   .header {
     .header__middle-container {
-        max-width: 450px;
+      max-width: 450px;
     }
+  }
 }
-
-}
-@media (max-width: 1300px){
+@media (max-width: 1300px) {
   .header {
     .header__middle-container {
-        max-width: 380px;
+      max-width: 380px;
     }
+  }
 }
-}
-@media (max-width: 768px){
+@media (max-width: 768px) {
   .header {
     .header__logo {
-        margin-right: 0;
+      margin-right: 0;
     }
+  }
 }
-}
-@media (max-width: 400px){
+@media (max-width: 400px) {
   .header {
-    .collapse_content{
+    .collapse_content {
       margin-left: 10px !important;
     }
-}
+  }
 }

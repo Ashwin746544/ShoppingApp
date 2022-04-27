@@ -19,18 +19,7 @@ const filters = [
       { name: "⭐⭐⭐⭐ & above", filterQuery: "customerReviewAverage>=4" }
     ]
   },
-  // {
-  //   customerReviewAverage
-  //   filterTitle: "Expanded Filters",
-  //   filterOptions: [
-  //     "Recommended",
-  //     "Recently Added",
-  //     "Expiring Soon",
-  //     "Most Rated",
-  //     "Price: Low → High",
-  //     "Price: High → Low",
-  //   ]
-  // },
+
   // {
   //   filterTitle: "Year of manufacturing",
   //   filterOptions: ["1954", "1955", "1956", "1957", "1958", "1959"]

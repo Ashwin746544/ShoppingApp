@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 
 const GenericModal = ({ openModal, modalHeading, cancelHandler, proceedHandler, children }) => {
   const [show, setShow] = useState(false);
-  console.log('MODAL RENDERED' + show);
 
   useEffect(() => {
     setShow(openModal);

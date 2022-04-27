@@ -1,34 +1,29 @@
 import "./Header.css";
-import SearchIcon from "../../assets/search.svg";
-import UserIcon from "../../assets/user.svg";
 import {
   Navbar,
   Container,
   Nav,
-  Form,
-  FormControl,
-  Button,
-  Badge,
 } from "react-bootstrap";
-import Logo from "../../assets/logo.svg";
 import HeaderRight from "../HeaderRight/HeaderRight";
 import HeaderMiddle from "../HeaderMiddle/HeaderMiddle";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ searchTextHandler }) => {
+  const navigate = useNavigate();
   return (
     <header className="header container-fluid px-0 py-3">
       <Navbar expand="xl" className="py-0">
         <Container fluid className="px-0">
-          <Navbar.Brand href="#" className="header__logo py-0 px-3 d-flex align-items-center">
+          <Navbar.Brand onClick={() => navigate("/")} className="header__logo py-0 px-3 d-flex align-items-center me-lg-0" style={{ cursor: "pointer" }}>
             <div className="logo-container d-flex align-items-center justify-content-center">
               <span>S</span>
             </div>
-            <p className="logo-name mb-0">Shopka</p>
+            <p className="logo-name mb-0" >Shopka</p>
           </Navbar.Brand>
           <div className="header__middle-container ms-auto d-none d-lg-block d-xl-none">
             <HeaderMiddle searchTextHandler={searchTextHandler} />
           </div>
-          <div className="ms-auto d-none d-sm-block d-xl-none" >
+          <div className="ms-auto d-none header__right-container-out " >
             <HeaderRight />
           </div>
           <Navbar.Toggle aria-controls="navbarScroll" />
