@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/bestBuy-shoppingApp/static/css/main.bb94fb0d.css",
-    "main.js": "/bestBuy-shoppingApp/static/js/main.9181fa78.js",
+    "main.css": "/bestBuy-shoppingApp/static/css/main.01a66373.css",
+    "main.js": "/bestBuy-shoppingApp/static/js/main.99cf3d5f.js",
     "static/js/787.6962f9d7.chunk.js": "/bestBuy-shoppingApp/static/js/787.6962f9d7.chunk.js",
     "static/media/user.svg": "/bestBuy-shoppingApp/static/media/user.f8378c7f08ef92d73700054f3a13e172.svg",
     "index.html": "/bestBuy-shoppingApp/index.html",
@@ -11,12 +11,12 @@
     "static/media/left.svg": "/bestBuy-shoppingApp/static/media/left.0a76a8c044b600f942b67581e08f3b8e.svg",
     "static/media/right.svg": "/bestBuy-shoppingApp/static/media/right.a1dce34f65b55faf8df4b833b32cadc5.svg",
     "static/media/stores.svg": "/bestBuy-shoppingApp/static/media/stores.aaa6178a4ac952fd11d31415e58339e0.svg",
-    "main.bb94fb0d.css.map": "/bestBuy-shoppingApp/static/css/main.bb94fb0d.css.map",
-    "main.9181fa78.js.map": "/bestBuy-shoppingApp/static/js/main.9181fa78.js.map",
+    "main.01a66373.css.map": "/bestBuy-shoppingApp/static/css/main.01a66373.css.map",
+    "main.99cf3d5f.js.map": "/bestBuy-shoppingApp/static/js/main.99cf3d5f.js.map",
     "787.6962f9d7.chunk.js.map": "/bestBuy-shoppingApp/static/js/787.6962f9d7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb94fb0d.css",
-    "static/js/main.9181fa78.js"
+    "static/css/main.01a66373.css",
+    "static/js/main.99cf3d5f.js"
   ]
 }
