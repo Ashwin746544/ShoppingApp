@@ -111,11 +111,11 @@ function App() {
         <div className="App">
           <Header searchTextHandler={searchTextHandler} />
           <Routes>
-            <Route path="/*" element={<HomePage categoriesArray={categoriesArray} searchText={searchText} />} />
-            <Route path="/product/:productId" element={<ProductDetailPage key={Date.now()} />} />
-            <Route path="/mycart" element={<Cart />} />
-            <Route path="/order" element={<OrderPage />} />
-            <Route path="/not-found" element={<PageNotFound />} />
+            <Route path="/bestBuy-shoppingApp/*" element={<HomePage categoriesArray={categoriesArray} searchText={searchText} />} />
+            <Route path="/bestBuy-shoppingApp/product/:productId" element={<ProductDetailPage key={Date.now()} />} />
+            <Route path="/bestBuy-shoppingApp/mycart" element={<Cart />} />
+            <Route path="/bestBuy-shoppingApp/order" element={<OrderPage />} />
+            <Route path="/bestBuy-shoppingApp/not-found" element={<PageNotFound />} />
           </Routes>
         </div>
       </SidebarContext.Provider>
