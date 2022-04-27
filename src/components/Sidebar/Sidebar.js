@@ -3,22 +3,28 @@ import SidebarCategorises from "../SidebarCategories/SidebarCategories";
 import "./Sidebar.css";
 import RightArrow from "../../assets/right.svg";
 import LeftArrow from "../../assets/left.svg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Backdrop from "../Backdrop/Backdrop";
 import storesIcon from '../../assets/stores.svg';
 
 const Sidebar = ({ categoriesArray }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const ref = useRef();
 
   const sidebarDisplayToggleHandler = () => {
     setClicked(true);
     setSidebarOpen((previousState) => !previousState);
   }
+  if (sidebarOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
   return (
     <>
       {sidebarOpen ? <Backdrop onClick={sidebarDisplayToggleHandler} /> : null}
-      <div className="sidebar" style={{ left: sidebarOpen ? "0" : (clicked && "-305px"), height: window.innerWidth < 992 ? "calc(100vh - 256px + 42px)" : "calc(100vh - 256px)" }}>
+      <div className="sidebar" ref={ref} style={{ left: sidebarOpen ? "0" : (clicked && "-" + (ref.current.clientWidth - 42) + "px"), height: sidebarOpen ? "calc(100vh - 256px)" : window.innerWidth < 992 ? "calc(954px + 42px)" : "954px" }}>
         <div className="sidebar__content-container">
           <button className="store__btn" ><img src={storesIcon} alt="stores" />Stores</button>
           <SidebarCategorises categoriesArray={categoriesArray} />

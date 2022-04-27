@@ -109,11 +109,15 @@ const MainContent = ({ searchText }) => {
     wholeQueryArray.push(`categoryPath.id=${sidebarCtx.sidebarCatId}`);
   }
   if (searchText) {
+    console.log(searchText);
     wholeQueryArray.push(searchText);
   }
   if (actualFilterQuery) {
     wholeQueryArray.push(actualFilterQuery);
   }
+  // useEffect(() => {
+  //   setCurrentPage(1);
+  // }, [actualFilterQuery]);
 
   url = `https://api.bestbuy.com/v1/products${wholeQueryArray.join("&") ? `(${wholeQueryArray.join("&")})` : ""
     }?show=all&pageSize=5&page=1&${getSortingFilterQuery()}apiKey=${MY_API_KEY}&format=json&cursorMark=${currentPage > 1 ? cursorMark : "*"

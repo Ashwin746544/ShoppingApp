@@ -12,16 +12,16 @@ const HeaderRight = () => {
   return (
     <div className="d-flex header__Right ps-3 ps-xl-0">
       <Button
-        variant="outline-success"
+        variant="outline-primary"
         className="text general-btn header__Right-signIn actions"
       >
         SignIn
       </Button>
       <button className="general-btn text actions header__Right-cart" onClick={() => navigate("/bestBuy-shoppingApp/mycart")}>
         My Cart{" "}
-        <Badge className="badge" bg="danger">
+        {cartCtx.cartItems.length >= 1 && <Badge className="badge" bg="danger">
           {cartCtx.cartItems.length}
-        </Badge>
+        </Badge>}
       </button>
       <button className="header__Right-profile">
         <img src={UserIcon} alt="user" />

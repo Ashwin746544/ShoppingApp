@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header/Header";
 import React, { useCallback, useEffect, useState, } from "react";
 import SidebarContext from "./SidebarContext";
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation, matchPath } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import ProductDetailPage from "./components/ProductDetailpage/ProductDetailPage";
 import CartContextProvider from "./Cart-Contex";
@@ -23,6 +23,7 @@ function App() {
   const [filterReset, setFilterReset] = useState(false);
   const [categoriesArray, setCategoriesArray] = useState([]);
   const { fetchRequest } = useHttpRequest();
+  const { pathname } = useLocation();
 
 
   const searchTextHandler = (text) => {
@@ -39,11 +40,16 @@ function App() {
 
 
   useEffect(() => {
-    getCategories();
+    console.log(pathname);
+    // if (pathname === "/bestBuy-shoppingApp/" || pathname.includes("category")) {
+    if (matchPath({ path: "/bestBuy-shoppingApp" }, pathname) || matchPath({ path: "/bestBuy-shoppingApp/category/:categoryId" }, pathname)) {
+      console.log("pathMatched");
+      getCategories();
+    }
   }, [getCategories]);
 
   const changeSelectedSidebarCategory = (id) => {
-    navigate("/");
+    navigate("/bestBuy-shoppingApp/");
     setSelectedSidebarCatId(id);
     setSelectedFilters([]);
     setFilterReset(true);

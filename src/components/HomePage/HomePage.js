@@ -22,7 +22,7 @@ const HomePage = ({ categoriesArray, searchText }) => {
             />
             <Route
               path="*"
-              element={<Navigate to="/not-found" replace />}
+              element={<Navigate to="/bestBuy-shoppingApp/not-found" replace />}
             />
           </Routes>
         </div>

@@ -14,7 +14,7 @@ const Header = ({ searchTextHandler }) => {
     <header className="header container-fluid px-0 py-3">
       <Navbar expand="xl" className="py-0">
         <Container fluid className="px-0">
-          <Navbar.Brand onClick={() => navigate("/")} className="header__logo py-0 px-3 d-flex align-items-center me-lg-0" style={{ cursor: "pointer" }}>
+          <Navbar.Brand onClick={() => navigate("/bestBuy-shoppingApp/")} className="header__logo py-0 px-3 d-flex align-items-center me-lg-0" style={{ cursor: "pointer" }}>
             <div className="logo-container d-flex align-items-center justify-content-center">
               <span>S</span>
             </div>

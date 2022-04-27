@@ -8,7 +8,7 @@
           justify-content: start;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
-  height: calc(100vh - 256px);
+  height: 954px;
 }
 
 .sidebar .sidebar__content-container {
