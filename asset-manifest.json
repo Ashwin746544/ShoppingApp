@@ -1,27 +1,22 @@
 {
   "files": {
-    "main.css": "/ShoppingApp/static/css/main.4acab3d4.css",
-    "main.js": "/ShoppingApp/static/js/main.44eb6b1a.js",
-    "static/js/787.6962f9d7.chunk.js": "/ShoppingApp/static/js/787.6962f9d7.chunk.js",
-    "static/media/user.svg": "/ShoppingApp/static/media/user.f8378c7f08ef92d73700054f3a13e172.svg",
-    "static/media/shoes.svg": "/ShoppingApp/static/media/shoes.480e380a33b8207eec448084297af0a4.svg",
-    "static/media/logo.svg": "/ShoppingApp/static/media/logo.31f00b7fa0b70731784b0da9b6b301c9.svg",
-    "static/media/fitness.svg": "/ShoppingApp/static/media/fitness.739d668096dd3a11287a2523cf55b43e.svg",
-    "index.html": "/ShoppingApp/index.html",
-    "static/media/hanger.svg": "/ShoppingApp/static/media/hanger.8e7a0b4cca1c17d463a08be03e7f104c.svg",
-    "static/media/concert.svg": "/ShoppingApp/static/media/concert.15bea9d19998d9e0188a1a850a9f5be1.svg",
-    "static/media/search.svg": "/ShoppingApp/static/media/search.279b32805cde2020fda17d2f31e8c0b4.svg",
-    "static/media/cinema.svg": "/ShoppingApp/static/media/cinema.904e6b5c40cf9a5067ac5b174394f37a.svg",
-    "static/media/arrowUp.svg": "/ShoppingApp/static/media/arrowUp.93aa0b943dc44f85e7d825d0da08669c.svg",
-    "static/media/left.svg": "/ShoppingApp/static/media/left.0a76a8c044b600f942b67581e08f3b8e.svg",
-    "static/media/right.svg": "/ShoppingApp/static/media/right.a1dce34f65b55faf8df4b833b32cadc5.svg",
-    "static/media/stores.svg": "/ShoppingApp/static/media/stores.aaa6178a4ac952fd11d31415e58339e0.svg",
-    "main.4acab3d4.css.map": "/ShoppingApp/static/css/main.4acab3d4.css.map",
-    "main.44eb6b1a.js.map": "/ShoppingApp/static/js/main.44eb6b1a.js.map",
-    "787.6962f9d7.chunk.js.map": "/ShoppingApp/static/js/787.6962f9d7.chunk.js.map"
+    "main.css": "/bestBuy-shoppingApp/static/css/main.bb94fb0d.css",
+    "main.js": "/bestBuy-shoppingApp/static/js/main.5dae13bb.js",
+    "static/js/787.6962f9d7.chunk.js": "/bestBuy-shoppingApp/static/js/787.6962f9d7.chunk.js",
+    "static/media/user.svg": "/bestBuy-shoppingApp/static/media/user.f8378c7f08ef92d73700054f3a13e172.svg",
+    "index.html": "/bestBuy-shoppingApp/index.html",
+    "static/media/concert.svg": "/bestBuy-shoppingApp/static/media/concert.15bea9d19998d9e0188a1a850a9f5be1.svg",
+    "static/media/search.svg": "/bestBuy-shoppingApp/static/media/search.279b32805cde2020fda17d2f31e8c0b4.svg",
+    "static/media/arrowUp.svg": "/bestBuy-shoppingApp/static/media/arrowUp.93aa0b943dc44f85e7d825d0da08669c.svg",
+    "static/media/left.svg": "/bestBuy-shoppingApp/static/media/left.0a76a8c044b600f942b67581e08f3b8e.svg",
+    "static/media/right.svg": "/bestBuy-shoppingApp/static/media/right.a1dce34f65b55faf8df4b833b32cadc5.svg",
+    "static/media/stores.svg": "/bestBuy-shoppingApp/static/media/stores.aaa6178a4ac952fd11d31415e58339e0.svg",
+    "main.bb94fb0d.css.map": "/bestBuy-shoppingApp/static/css/main.bb94fb0d.css.map",
+    "main.5dae13bb.js.map": "/bestBuy-shoppingApp/static/js/main.5dae13bb.js.map",
+    "787.6962f9d7.chunk.js.map": "/bestBuy-shoppingApp/static/js/787.6962f9d7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4acab3d4.css",
-    "static/js/main.44eb6b1a.js"
+    "static/css/main.bb94fb0d.css",
+    "static/js/main.5dae13bb.js"
   ]
 }
