@@ -125,6 +125,11 @@ const MainContent = ({ searchText }) => {
 
 
   const loadMoreData = () => {
+    console.log(isLoading);
+    if (isLoading) {
+      console.log("return");
+      return;
+    }
     setCurrentPage((prevValue) => prevValue + 1);
   }
 
@@ -165,7 +170,8 @@ const MainContent = ({ searchText }) => {
   return (
     <div id="scrollableDiv" className="main__content-container">
       <InfiniteScroll
-        dataLength={currentPage * 5}
+        // dataLength={currentPage * 5}
+        dataLength={Date.now()}
         next={loadMoreData}
         hasMore={true}
         scrollThreshold="0px"
